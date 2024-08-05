@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Overhead expense #<%= @the_overhead_expense.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/overhead_expenses">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_overhead_expense/<%= @the_overhead_expense.id %>">
+          Delete overhead expense
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_overhead_expense.category %>
+      </dd>
+
+      <dt>
+        Total cost
+      </dt>
+      <dd>
+        <%= @the_overhead_expense.total_cost %>
+      </dd>
+
+      <dt>
+        Plan
+      </dt>
+      <dd>
+        <%= @the_overhead_expense.plan_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_overhead_expense.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_overhead_expense.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_overhead_expense.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit overhead expense
+    </h2>
+
+    <form action="/modify_overhead_expense/<%= @the_overhead_expense.id %>"  method="post" >
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category" value="<%= @the_overhead_expense.category %>">
+      </div>
+
+      <div>
+        <label for="total_cost_box">
+          Total cost
+        </label>
+
+        <input type="text" id="total_cost_box" name="query_total_cost" value="<%= @the_overhead_expense.total_cost %>">
+      </div>
+
+      <div>
+        <label for="plan_id_box">
+          Plan
+        </label>
+
+        <input type="text" id="plan_id_box" name="query_plan_id" value="<%= @the_overhead_expense.plan_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_overhead_expense.user_id %>">
+      </div>
+
+      <button>
+        Update overhead expense
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

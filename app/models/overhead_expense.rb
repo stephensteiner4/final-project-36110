@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: overhead_expenses
+#
+#  id         :bigint           not null, primary key
+#  category   :string
+#  total_cost :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  plan_id    :integer
+#  user_id    :integer
+#
+class OverheadExpense < ApplicationRecord
+end

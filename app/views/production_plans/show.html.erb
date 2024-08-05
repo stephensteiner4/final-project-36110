@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Production plan #<%= @the_production_plan.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/production_plans">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_production_plan/<%= @the_production_plan.id %>">
+          Delete production plan
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_production_plan.description %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_production_plan.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_production_plan.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_production_plan.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit production plan
+    </h2>
+
+    <form action="/modify_production_plan/<%= @the_production_plan.id %>"  method="post" >
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_production_plan.description %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_production_plan.user_id %>">
+      </div>
+
+      <button>
+        Update production plan
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
