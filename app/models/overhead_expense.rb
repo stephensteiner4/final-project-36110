@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  category   :string
-#  total_cost :string
+#  total_cost :decimal(, )
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  plan_id    :integer

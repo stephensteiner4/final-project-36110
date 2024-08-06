@@ -34,7 +34,7 @@
 <hr>
 
 <div>
-  Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost) %>
+  Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
 </div>
 
 <hr>
@@ -75,6 +75,8 @@
       </button>
     </form>
   </div>
+
+  <br>
 
   <table border=1>
     <tr>
