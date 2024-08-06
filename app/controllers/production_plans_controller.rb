@@ -2,9 +2,17 @@ class ProductionPlansController < ApplicationController
   def index
     matching_production_plans = ProductionPlan.all
 
-    @list_of_production_plans = matching_production_plans.order({ :created_at => :desc })
+    if current_user != nil
 
-    render({ :template => "production_plans/index" })
+      @list_of_production_plans = matching_production_plans.order({ :created_at => :desc }).where({:user_id => current_user.id})
+
+      render({ :template => "production_plans/index" })
+
+    elsif
+
+      render({ :template => "production_plans/force_sign_in" })
+    
+    end
   end
 
   def show

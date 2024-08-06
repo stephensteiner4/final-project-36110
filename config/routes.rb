@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  root "production_plans#index"
+
   # Routes for the Overhead expense resource:
 
   # CREATE
@@ -36,8 +40,6 @@ Rails.application.routes.draw do
   get("/delete_production_plan/:path_id", { :controller => "production_plans", :action => "destroy" })
 
   #------------------------------
-
-  devise_for :customers
 
   # This is a blank app! Pick your first screen, build out the RCAV, and go from there. E.g.:
 
