@@ -1,63 +1,15 @@
 <div>
   <div>
     <h1>
-      Production plan #<%= @the_production_plan.id %> details
+      Production plan: <%= @the_production_plan.name %>
     </h1>
 
-    <div>
-      <div>
-        <a href="/production_plans">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_production_plan/<%= @the_production_plan.id %>">
-          Delete production plan
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_production_plan.description %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_production_plan.user_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_production_plan.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_production_plan.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
-
-<hr>
 
 
 <div>
   <div>
-    <h2>
-      Edit production plan
-    </h2>
 
     <form action="/modify_production_plan/<%= @the_production_plan.id %>"  method="post" >
       <div>
@@ -65,15 +17,11 @@
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description" value="<%= @the_production_plan.description %>">
+        <textarea type="text" id="description_box" name="query_description" rows=3><%= @the_production_plan.description %></textarea>
       </div>
 
       <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_production_plan.user_id %>">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_production_plan.user_id %>">
       </div>
 
       <button>
@@ -84,3 +32,106 @@
 </div>
 
 <hr>
+
+<div>
+  Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost) %>
+</div>
+
+<hr>
+
+<div>
+  <h2>
+    Fixed Costs
+  </h2>
+
+  <div>
+    <form action="/insert_overhead_expense" method="post">
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category">
+      </div>
+
+      <div>
+        <label for="total_cost_box">
+          Total cost
+        </label>
+
+        <input type="text" id="total_cost_box" name="query_total_cost">
+      </div>
+
+      <div>
+        <input type="hidden" id="plan_id_box" name="query_plan_id" value=<%= @the_production_plan.id %>>
+      </div>
+
+      <div>
+        <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id %>>
+      </div>
+
+      <button>
+        Create overhead expense
+      </button>
+    </form>
+  </div>
+
+  <table border=1>
+    <tr>
+      <th>
+        Expense
+      </th>  
+      <th>
+        Cost
+      </th>
+    </tr>
+
+    <% @the_production_plan.fixed_costs.each do | cost | %>
+
+      <tr>
+        <td>
+          <%= cost.category %>
+        </td>
+      
+        <td>
+          <%= cost.total_cost %>
+        </td>
+      </tr>
+
+    <% end %>
+  </table>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <a href="/production_plans">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_production_plan/<%= @the_production_plan.id %>">
+      Delete production plan
+    </a>
+  </div>
+</div>
+
+<div>
+  <dl>
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_production_plan.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_production_plan.updated_at) %> ago
+    </dd>
+  </dl>
+</div>

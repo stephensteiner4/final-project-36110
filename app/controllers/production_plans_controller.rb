@@ -27,6 +27,7 @@ class ProductionPlansController < ApplicationController
 
   def create
     the_production_plan = ProductionPlan.new
+    the_production_plan.name = params.fetch("query_name")
     the_production_plan.description = params.fetch("query_description")
     the_production_plan.user_id = params.fetch("query_user_id")
 

@@ -13,5 +13,5 @@
 class OverheadExpense < ApplicationRecord
 
   has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
-  
+
 end

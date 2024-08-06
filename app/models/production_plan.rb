@@ -10,4 +10,5 @@
 #  user_id     :integer
 #
 class ProductionPlan < ApplicationRecord
+  has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
 end

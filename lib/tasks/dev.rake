@@ -32,4 +32,21 @@ task({ :sample_data => :environment }) do
     plan.save
 
   end
+
+  ProductionPlan.all.each do | prodplan |
+    ["Fuel", "Management Salary", "Equipment"].each do | exp |
+      expense = OverheadExpense.new
+
+      expense.category = exp
+
+      expense.total_cost = rand(10000..200000)
+
+      expense.plan_id = prodplan.id
+
+      expense.user_id = prodplan.user_id
+
+      expense.save
+
+    end
+  end
 end
