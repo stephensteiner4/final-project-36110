@@ -11,19 +11,19 @@
   </head>
 
   <body>
+      <nav>
 
-    <% if current_user != nil %>
-      <nav>
-        <a href="/production_plans">All Plans</a>
-        <a href="/users/edit">Edit Profile</a>
-        <a href="/users/sign_out">Sign Out</a>
+        <% if current_user != nil %>
+          <a href="/production_plans">All Plans</a>
+          <a href="/users/edit">Edit Profile</a>
+          <a href="/users/sign_out" data-method="delete">Sign Out</a>
+        <% elsif %>
+          <a href="/users/sign_up">Sign Up</a>
+          <a href="/users/sign_in">Sign In</a>
+        <% end %>
       </nav>
-    <% elsif %>
-      <nav>
-        <a href="/users/sign_up">Sign Up</a>
-        <a href="/users/sign_in">Sign In</a>
-      </nav>
-    <% end %>
+
+    <%=  %>
 
     <hr>
 

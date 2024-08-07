@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Greenhouse utilization #<%= @the_greenhouse_utilization.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/greenhouse_utilizations">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_greenhouse_utilization/<%= @the_greenhouse_utilization.id %>">
+          Delete greenhouse utilization
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Time
+      </dt>
+      <dd>
+        <%= @the_greenhouse_utilization.time %>
+      </dd>
+
+      <dt>
+        Total benchspace
+      </dt>
+      <dd>
+        <%= @the_greenhouse_utilization.total_benchspace %>
+      </dd>
+
+      <dt>
+        Plan
+      </dt>
+      <dd>
+        <%= @the_greenhouse_utilization.plan_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_greenhouse_utilization.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_greenhouse_utilization.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_greenhouse_utilization.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit greenhouse utilization
+    </h2>
+
+    <form action="/modify_greenhouse_utilization/<%= @the_greenhouse_utilization.id %>"  method="post" >
+      <div>
+        <label for="time_box">
+          Time
+        </label>
+
+        <input type="text" id="time_box" name="query_time" value="<%= @the_greenhouse_utilization.time %>">
+      </div>
+
+      <div>
+        <label for="total_benchspace_box">
+          Total benchspace
+        </label>
+
+        <input type="text" id="total_benchspace_box" name="query_total_benchspace" value="<%= @the_greenhouse_utilization.total_benchspace %>">
+      </div>
+
+      <div>
+        <label for="plan_id_box">
+          Plan
+        </label>
+
+        <input type="text" id="plan_id_box" name="query_plan_id" value="<%= @the_greenhouse_utilization.plan_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_greenhouse_utilization.user_id %>">
+      </div>
+
+      <button>
+        Update greenhouse utilization
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

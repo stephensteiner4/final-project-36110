@@ -12,6 +12,7 @@
 #
 class OverheadExpense < ApplicationRecord
 
-  has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
-
+  # has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
+  belongs_to :plan, class_name: "ProductionPlan", foreign_key: "plan_id"
+  belongs_to :user, class_name: "User", foreign_key: "user_id"
 end
