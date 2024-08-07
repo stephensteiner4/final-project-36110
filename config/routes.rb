@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Material resource:
+
+  # CREATE
+  post("/insert_material", { :controller => "materials", :action => "create" })
+          
+  # READ
+  get("/materials", { :controller => "materials", :action => "index" })
+  
+  get("/materials/:path_id", { :controller => "materials", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_material/:path_id", { :controller => "materials", :action => "update" })
+  
+  # DELETE
+  get("/delete_material/:path_id", { :controller => "materials", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Greenhouse utilization resource:
 
   # CREATE

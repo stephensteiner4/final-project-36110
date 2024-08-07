@@ -22,6 +22,8 @@ class ProductionPlansController < ApplicationController
 
     @the_production_plan = matching_production_plans.at(0)
 
+    @fixed_per_sqftweek = (@the_production_plan.fixed_costs.pluck(:total_cost).sum / (@the_production_plan.total_space*52)).round(2)
+
     render({ :template => "production_plans/show" })
   end
 
@@ -30,6 +32,7 @@ class ProductionPlansController < ApplicationController
     the_production_plan.name = params.fetch("query_name")
     the_production_plan.description = params.fetch("query_description")
     the_production_plan.user_id = params.fetch("query_user_id")
+    the_production_plan.total_space = params.fetch("query_space")
 
     if the_production_plan.valid?
       the_production_plan.save
@@ -45,6 +48,7 @@ class ProductionPlansController < ApplicationController
 
     the_production_plan.description = params.fetch("query_description")
     the_production_plan.user_id = params.fetch("query_user_id")
+    the_production_plan.total_space = params.fetch("query_space")
 
     if the_production_plan.valid?
       the_production_plan.save

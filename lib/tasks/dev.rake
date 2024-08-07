@@ -32,13 +32,14 @@ task({ :sample_data => :environment }) do
 
     plan.user_id = user_plan.id
 
+    plan.total_space = greenhouse_space = rand(10000..1000000)
+
     plan.save
 
   end
 
 #### Greenhouse Utilization sample data
   ProductionPlan.all.each do | prodplan |
-    greenhouse_space = rand(10000..1000000)
 
     12.times do | i |
       space = GreenhouseUtilization.new
@@ -48,21 +49,21 @@ task({ :sample_data => :environment }) do
       space.plan_id = prodplan.id
       space.user_id = prodplan.user_id
 
-      if greenhouse_space >=50000
+      if prodplan.total_space >=50000
         if (i+1) <= 5
-          space.total_benchspace = greenhouse_space * ((i+1)/5.0)
+          space.total_benchspace = prodplan.total_space * ((i+1)/5.0)
         elsif ((i+1) > 5) & ((i+1) <= 8)
-          space.total_benchspace = greenhouse_space * (5.0/(i+1))
+          space.total_benchspace = prodplan.total_space * (5.0/(i+1))
         elsif ((i+1) == 9)
           space.total_benchspace = 0
         elsif ((i+1) > 9) & ((i+1) < 12)
-          space.total_benchspace = greenhouse_space * (0.25)
+          space.total_benchspace = prodplan.total_space * (0.25)
         elsif ((i+1) == 12)
           space.total_benchspace = 0
         end
       elsif
         if ((i+1) <= 9) | ((i+1)!=1)
-          space.total_benchspace = greenhouse_space
+          space.total_benchspace = prodplan.total_space
         elsif ((i+1) > 10) | ((i+1)==1)
           space.total_benchspace = 0
         end
@@ -75,7 +76,7 @@ task({ :sample_data => :environment }) do
 
 #### Fixed expenses sample data
   ProductionPlan.all.each do | prodplan |
-    ["Fuel", "Management Salary", "Equipment"].each do | exp |
+    ["Fuel", "Management Salary", "Equipment", "Insurance", "Taxes", "Office Utilities", "Depreciation"].each do | exp |
       expense = OverheadExpense.new
 
       expense.category = exp

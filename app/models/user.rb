@@ -25,4 +25,5 @@ class User < ApplicationRecord
          has_many :production_plans, class_name: "ProductionPlan", foreign_key: "user_id", dependent: :destroy
          has_many :overhead_expenses, through: :production_plans, source: :overhead_expenses
          has_many  :space_allocations, class_name: "GreenhouseUtilization", foreign_key: "user_id", dependent: :destroy
+         has_many  :materials, class_name: "Material", foreign_key: "user_id", dependent: :destroy
 end

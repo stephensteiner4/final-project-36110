@@ -1,0 +1,358 @@
+<div>
+  <div>
+    <h1>
+      List of all materials
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new material
+    </h2>
+
+    <form action="/insert_material" method="post">
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="crop_time_box">
+          Crop time
+        </label>
+
+        <input type="text" id="crop_time_box" name="query_crop_time">
+      </div>
+
+      <div>
+        <label for="plan_id_box">
+          Plan
+        </label>
+
+        <input type="text" id="plan_id_box" name="query_plan_id">
+      </div>
+
+      <div>
+        <label for="material_cost_box">
+          Material cost
+        </label>
+
+        <input type="text" id="material_cost_box" name="query_material_cost">
+      </div>
+
+      <div>
+        <label for="retail_week_box">
+          Retail week
+        </label>
+
+        <input type="text" id="retail_week_box" name="query_retail_week">
+      </div>
+
+      <div>
+        <label for="container_size_box">
+          Container size
+        </label>
+
+        <input type="text" id="container_size_box" name="query_container_size">
+      </div>
+
+      <div>
+        <label for="soil_cost_box">
+          Soil cost
+        </label>
+
+        <input type="text" id="soil_cost_box" name="query_soil_cost">
+      </div>
+
+      <div>
+        <label for="unit_price_box">
+          Unit price
+        </label>
+
+        <input type="text" id="unit_price_box" name="query_unit_price">
+      </div>
+
+      <div>
+        <label for="unit_margin_box">
+          Unit margin
+        </label>
+
+        <input type="text" id="unit_margin_box" name="query_unit_margin">
+      </div>
+
+      <div>
+        <label for="buffer_box">
+          Buffer
+        </label>
+
+        <input type="text" id="buffer_box" name="query_buffer">
+      </div>
+
+      <div>
+        <label for="bench_space_box">
+          Bench space
+        </label>
+
+        <input type="text" id="bench_space_box" name="query_bench_space">
+      </div>
+
+      <div>
+        <label for="unit_cost_box">
+          Unit cost
+        </label>
+
+        <input type="text" id="unit_cost_box" name="query_unit_cost">
+      </div>
+
+      <div>
+        <label for="sqft_cost_box">
+          Sqft cost
+        </label>
+
+        <input type="text" id="sqft_cost_box" name="query_sqft_cost">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="sqft_margin_box">
+          Sqft margin
+        </label>
+
+        <input type="text" id="sqft_margin_box" name="query_sqft_margin">
+      </div>
+
+      <div>
+        <label for="container_type_box">
+          Container type
+        </label>
+
+        <input type="text" id="container_type_box" name="query_container_type">
+      </div>
+
+      <div>
+        <label for="unit_container_cost_box">
+          Unit container cost
+        </label>
+
+        <input type="text" id="unit_container_cost_box" name="query_unit_container_cost">
+      </div>
+
+      <div>
+        <label for="unit_tag_cost_box">
+          Unit tag cost
+        </label>
+
+        <input type="text" id="unit_tag_cost_box" name="query_unit_tag_cost">
+      </div>
+
+      <button>
+        Create material
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Crop time
+        </th>
+
+        <th>
+          Plan
+        </th>
+
+        <th>
+          Material cost
+        </th>
+
+        <th>
+          Retail week
+        </th>
+
+        <th>
+          Container size
+        </th>
+
+        <th>
+          Soil cost
+        </th>
+
+        <th>
+          Unit price
+        </th>
+
+        <th>
+          Unit margin
+        </th>
+
+        <th>
+          Buffer
+        </th>
+
+        <th>
+          Bench space
+        </th>
+
+        <th>
+          Unit cost
+        </th>
+
+        <th>
+          Sqft cost
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Sqft margin
+        </th>
+
+        <th>
+          Container type
+        </th>
+
+        <th>
+          Unit container cost
+        </th>
+
+        <th>
+          Unit tag cost
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_materials.each do |a_material| %>
+      <tr>
+        <td>
+          <%= a_material.id %>
+        </td>
+
+        <td>
+          <%= a_material.description %>
+        </td>
+
+        <td>
+          <%= a_material.crop_time %>
+        </td>
+
+        <td>
+          <%= a_material.plan_id %>
+        </td>
+
+        <td>
+          <%= a_material.material_cost %>
+        </td>
+
+        <td>
+          <%= a_material.retail_week %>
+        </td>
+
+        <td>
+          <%= a_material.container_size %>
+        </td>
+
+        <td>
+          <%= a_material.soil_cost %>
+        </td>
+
+        <td>
+          <%= a_material.unit_price %>
+        </td>
+
+        <td>
+          <%= a_material.unit_margin %>
+        </td>
+
+        <td>
+          <%= a_material.buffer %>
+        </td>
+
+        <td>
+          <%= a_material.bench_space %>
+        </td>
+
+        <td>
+          <%= a_material.unit_cost %>
+        </td>
+
+        <td>
+          <%= a_material.sqft_cost %>
+        </td>
+
+        <td>
+          <%= a_material.user_id %>
+        </td>
+
+        <td>
+          <%= a_material.sqft_margin %>
+        </td>
+
+        <td>
+          <%= a_material.container_type %>
+        </td>
+
+        <td>
+          <%= a_material.unit_container_cost %>
+        </td>
+
+        <td>
+          <%= a_material.unit_tag_cost %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_material.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_material.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/materials/<%= a_material.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

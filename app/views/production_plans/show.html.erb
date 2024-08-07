@@ -24,6 +24,14 @@
         <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_production_plan.user_id %>">
       </div>
 
+      <div>
+        <label for="space_box">
+          Total Usable Space
+        </label>
+
+        <input type="float" id="space_box" name="query_space" value="<%= @the_production_plan.total_space %>">
+      </div>
+
       <button>
         Update production plan
       </button>
@@ -34,7 +42,13 @@
 <hr>
 
 <div>
-  Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
+  <div>
+    Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
+  </div>
+
+  <div>
+    Fixed Costs per ft&sup2; per week: <%= @fixed_per_sqftweek %>
+  </div>
 </div>
 
 <hr>
@@ -48,7 +62,7 @@
     <form action="/insert_overhead_expense" method="post">
       <div>
         <label for="category_box">
-          Category
+          Expense Category
         </label>
 
         <input type="text" id="category_box" name="query_category">
@@ -102,6 +116,15 @@
 
     <% end %>
   </table>
+</div>
+
+<hr>
+
+<h2>
+  Variable Costs
+</h2>
+
+<div>
 </div>
 
 <hr>

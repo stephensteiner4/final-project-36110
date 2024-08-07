@@ -31,6 +31,14 @@
 
         <input type="text" id="description_box" name="query_description">
       </div>
+      
+      <div>
+        <label for="space_box">
+          Total Usable Space
+        </label>
+
+        <input type="float" id="space_box" name="query_space">
+      </div>
 
       <div>
 
@@ -62,6 +70,10 @@
         </th>
 
         <th>
+          Total Usable Space
+        </th>
+
+        <th>
           Created at
         </th>
 
@@ -85,6 +97,10 @@
 
         <td>
           <%= a_production_plan.description %>
+        </td>
+
+        <td>
+          <%= a_production_plan.total_space %>
         </td>
 
         <td>
