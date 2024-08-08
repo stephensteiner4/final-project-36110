@@ -125,6 +125,29 @@
 </h2>
 
 <div>
+  <table border=1>
+    <tr>
+      <th>
+        Material
+      </th>
+
+      <th>
+        Crop Time
+      </th>
+    </tr>
+
+    <% @the_production_plan.crops.each do | crop | %>
+      <tr>
+        <td>
+          <%= crop.description %>
+        </td>
+
+        <td>
+          <%= crop.crop_time %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <hr>
