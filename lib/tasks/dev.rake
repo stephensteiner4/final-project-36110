@@ -34,6 +34,8 @@ task({ :sample_data => :environment }) do
 
     plan.total_space = greenhouse_space = rand(10000..1000000)
 
+    plan.soil_cost = rand(250..300)
+
     plan.save
 
   end
@@ -91,4 +93,54 @@ task({ :sample_data => :environment }) do
 
     end
   end
+
+  ### Materials Sample Data
+  ProductionPlan.all.each do | prodplan |
+    rand(50..500).times do | j | #
+      matl = Material.new
+
+      matl.description = ["Petunia", "Begonia", "Scaevola", "Canna", "Impatiens", "Nepeta", "Lavender", "Sunflower", "Lilly", "Tulip", "Daisy", "Salvia", "Lysimachia", "Peony", "Sedum", "Coreopsis", "Monstera", "Fern", "Snapdragon"].sample
+
+      matl.crop_time = rand(6..12)
+
+      matl.material_cost = rand(20..100) / 100.0
+
+      matl.container_type = "Pot" #["Basket", "Tray", "Pot"]
+
+      if matl.container_type == "Pot"
+        diam = rand(4..10)
+
+        matl.container_size = diam
+
+        matl.soil_cost = ((3.14 * ((diam/2)**2) * diam) / 46656.0) * prodplan.soil_cost
+        
+        matl.unit_price = (diam ** 2) / 3.5
+      end
+
+      matl.total_qty = rand(100..10000)
+
+      matl.bench_space = (diam**2/144.0) * matl.total_qty
+
+      matl.unit_tag_cost = rand(1..4) / 200.0
+
+      matl.unit_container_cost = rand(1..4) / 10.0
+
+      matl.miscellaneous = rand(1..10) / 100.0
+
+      matl.buffer = rand(1..20)
+
+      matl.shrink_opportunity_cost = (matl.buffer/100.0) * matl.unit_price
+
+      matl.unit_cost = matl.shrink_opportunity_cost + matl.unit_container_cost + matl.unit_tag_cost + matl.material_cost + matl.soil_cost
+
+      matl.sqft_cost = (matl.unit_cost * matl.total_qty) / matl.bench_space
+
+      matl.plan_id = prodplan.id
+
+      matl.user_id = prodplan.user_id
+
+      matl.save
+    end
+  end
+
 end

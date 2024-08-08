@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :string
 #  name        :string
+#  soil_cost   :float
 #  total_space :decimal(, )
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
