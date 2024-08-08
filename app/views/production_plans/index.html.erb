@@ -41,6 +41,15 @@
       </div>
 
       <div>
+        <label for="soil_box">
+          Soil Cost per yd&sup3;
+        </label>
+
+        <input type="float" id="soil_box" name="query_soil">
+      </div>
+
+
+      <div>
 
         <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id%>>
       </div>
@@ -74,6 +83,10 @@
         </th>
 
         <th>
+          Soil Cost
+        </th>
+
+        <th>
           Created at
         </th>
 
@@ -101,6 +114,10 @@
 
         <td>
           <%= a_production_plan.total_space %>
+        </td>
+
+        <td>
+          <%= a_production_plan.soil_cost %>
         </td>
 
         <td>
