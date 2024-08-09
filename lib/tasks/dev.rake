@@ -114,14 +114,14 @@ task({ :sample_data => :environment }) do
 
         matl.container_size = diam
 
-        matl.soil_cost = ((3.14 * ((diam/2)**2) * diam) / 46656.0) * prodplan.soil_cost
+        matl.soil_cost = (((3.14 * ((diam/2)**2) * diam) / 46656.0) * prodplan.soil_cost).round(2)
         
-        matl.unit_price = (diam ** 2) / 3.5
+        matl.unit_price = ((diam ** 2) / 3.5).round(2)
       end
 
       matl.total_qty = rand(100..10000)
 
-      matl.bench_space = (diam**2/144.0) * matl.total_qty
+      matl.bench_space = ((diam**2/144.0) * matl.total_qty).round(2)
 
       matl.unit_tag_cost = rand(1..4) / 200.0
 
@@ -131,7 +131,7 @@ task({ :sample_data => :environment }) do
 
       matl.buffer = rand(1..20)
 
-      matl.shrink_opportunity_cost = (matl.buffer/100.0) * matl.unit_price
+      matl.shrink_opportunity_cost = ((matl.buffer/100.0) * matl.unit_price).round(2)
 
       matl.unit_cost = matl.shrink_opportunity_cost + matl.unit_container_cost + matl.unit_tag_cost + matl.material_cost + matl.soil_cost
 

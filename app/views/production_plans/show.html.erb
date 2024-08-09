@@ -40,6 +40,14 @@
         <input type="float" id="soil_box" name="query_soil" value="<%= @the_production_plan.soil_cost %>">
       </div>
 
+      <div>
+        <label for="weeks_box">
+          Production Weeks
+        </label>
+
+        <input type="float" id="weeks_box" name="query_prodweeks" value="<%= @the_production_plan.prod_weeks %>">
+      </div>
+
       <button>
         Update production plan
       </button>
@@ -129,12 +137,16 @@
 <hr>
 
 <h2>
-  Variable Costs
+  Material Costs
 </h2>
 
 <div>
   <table border=1>
     <tr>
+      <th>
+        Manage
+      </th>
+
       <th>
         Material
       </th>
@@ -142,16 +154,132 @@
       <th>
         Crop Time
       </th>
+
+      <th>
+        Container Type
+      </th>
+
+      <th>
+        Container Size
+      </th>
+
+      <th>
+        Total Units Planted
+      </th>
+
+      <th>
+        Bench Area Used
+      </th>
+
+      <th>
+        Unit Material Cost
+      </th>
+
+      <th>
+        Unit Container Cost
+      </th>
+
+      <th>
+        Unit Tag Cost
+      </th>
+
+      <th>
+        Miscellaneous Unit Costs
+      </th>
+
+      <th>
+        Buffer %
+      </th>
+
+      <th>
+        Shrink Opportuniy Cost
+      </th>
+
+      <th>
+        Total Unit Cost
+      </th>
+
+      <th>
+        Unit Sell Price
+      </th>
+      
+      <th>
+        Unit Margin
+      </th>
+      
+      <th>
+        Margin / ft&sup2; / Week
+      </th>
     </tr>
 
     <% @the_production_plan.crops.each do | crop | %>
       <tr>
+        <td>
+          <a href="">Edit</a>
+        </td>
+
         <td>
           <%= crop.description %>
         </td>
 
         <td>
           <%= crop.crop_time %>
+        </td>
+        
+        <td>
+          <%= crop.container_type %>
+        </td>
+        
+        <td>
+          <%= crop.container_size %>
+        </td>
+        
+        <td>
+          <%= crop.total_qty %>
+        </td>
+        
+        <td>
+          <%= crop.bench_space %>
+        </td>
+        
+        <td>
+          <%= crop.material_cost %>
+        </td>
+        
+        <td>
+          <%= crop.unit_container_cost %>
+        </td>
+        
+        <td>
+          <%= crop.unit_tag_cost %>
+        </td>
+        
+        <td>
+          <%= crop.miscellaneous %>
+        </td>
+        
+        <td>
+          <%= crop.buffer %>
+        </td>
+        
+        <td>
+          <%= crop.shrink_opportunity_cost %>
+        </td>
+
+        <td>
+          <%= total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous).round(2) %>
+        </td>
+        
+        <td>
+          <%= crop.unit_price %>
+        </td>
+
+        <td>
+          <%= (crop.unit_price - total_matl_cost).round(2) %>
+        </td>
+
+        <td>
+          <%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / @the_production_plan.prod_weeks).round(2) %>
         </td>
       </tr>
     <% end %>
