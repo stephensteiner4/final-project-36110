@@ -33,6 +33,14 @@
       </div>
       
       <div>
+        <label for="prodweeks_box">
+          Production Weeks
+        </label>
+
+        <input type="text" id="prodweeks_box" name="query_prodweeks">
+      </div>
+      
+      <div>
         <label for="space_box">
           Total Usable Space
         </label>
@@ -77,6 +85,10 @@
         <th>
           Description
         </th>
+        
+        <th>
+          Production Weeks
+        </th>
 
         <th>
           Total Usable Space
@@ -110,6 +122,10 @@
 
         <td>
           <%= a_production_plan.description %>
+        </td>
+
+        <td>
+          <%= a_production_plan.prod_weeks %>
         </td>
 
         <td>

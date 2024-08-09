@@ -36,6 +36,8 @@ task({ :sample_data => :environment }) do
 
     plan.soil_cost = rand(250..300)
 
+    plan.prod_weeks = [20,32,52].sample
+
     plan.save
 
   end

@@ -49,6 +49,7 @@ class ProductionPlansController < ApplicationController
 
     the_production_plan.description = params.fetch("query_description")
     the_production_plan.user_id = params.fetch("query_user_id")
+    the_production_plan.prod_weeks = params.fetch("query_prodweeks")
     the_production_plan.total_space = params.fetch("query_space")
     the_production_plan.soil_cost = params.fetch("query_soil")
 
