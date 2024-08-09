@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+
+  root "production_plans#index"
+  
   # Routes for the Material resource:
 
   # CREATE
   post("/insert_material", { :controller => "materials", :action => "create" })
           
   # READ
-  get("/materials", { :controller => "materials", :action => "index" })
   
   get("/materials/:path_id", { :controller => "materials", :action => "show" })
   
@@ -37,17 +41,12 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
-
-  root "production_plans#index"
-
   # Routes for the Overhead expense resource:
 
   # CREATE
   post("/insert_overhead_expense", { :controller => "overhead_expenses", :action => "create" })
           
   # READ
-  get("/overhead_expenses", { :controller => "overhead_expenses", :action => "index" })
   
   get("/overhead_expenses/:path_id", { :controller => "overhead_expenses", :action => "show" })
   

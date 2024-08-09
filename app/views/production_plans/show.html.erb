@@ -67,7 +67,7 @@
   </div>
 
   <div>
-    Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
+    Total Fixed Costs: <%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
   </div>
 
   <div>
@@ -75,11 +75,11 @@
   </div>
 
   <div>
-    Total Fixed Costs: <%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
+    Total Variable Costs: <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
   </div>
 
   <div>
-    Total Variable Costs: <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
+    Total Revenue: <%= total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %>
   </div>
   
   <div>
@@ -87,7 +87,7 @@
   </div>
 
   <div>
-    Total Profit: <%= %>
+    Total Profit: <%= total_rev = (total_varcosts - total_fixcosts) %>
   </div>
 </div>
 
