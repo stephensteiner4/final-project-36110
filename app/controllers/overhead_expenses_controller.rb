@@ -43,7 +43,7 @@ class OverheadExpensesController < ApplicationController
 
     if the_overhead_expense.valid?
       the_overhead_expense.save
-      redirect_to("/overhead_expenses/#{the_overhead_expense.id}", { :notice => "Overhead expense updated successfully."} )
+      redirect_to("/production_plans/#{the_overhead_expense.plan_id}", { :notice => "Overhead expense updated successfully."} )
     else
       redirect_to("/overhead_expenses/#{the_overhead_expense.id}", { :alert => the_overhead_expense.errors.full_messages.to_sentence })
     end

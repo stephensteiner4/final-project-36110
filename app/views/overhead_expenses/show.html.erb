@@ -6,7 +6,7 @@
 
     <div>
       <div>
-        <a href="/overhead_expenses">
+        <a href="/production_plans/<%= @the_overhead_expense.plan_id %>">
           Go back
         </a>
       </div>
@@ -91,19 +91,13 @@
       </div>
 
       <div>
-        <label for="plan_id_box">
-          Plan
-        </label>
 
-        <input type="text" id="plan_id_box" name="query_plan_id" value="<%= @the_overhead_expense.plan_id %>">
+        <input type="hidden" id="plan_id_box" name="query_plan_id" value="<%= @the_overhead_expense.plan_id %>">
       </div>
 
       <div>
-        <label for="user_id_box">
-          User
-        </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_overhead_expense.user_id %>">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_overhead_expense.user_id %>">
       </div>
 
       <button>

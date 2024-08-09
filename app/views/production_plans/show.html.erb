@@ -75,7 +75,7 @@
   </div>
 
   <div>
-    Total Variable Costs: <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
+    Total Variable Costs (incl. Shrink Opportunity Cost): <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
   </div>
 
   <div>
@@ -147,7 +147,7 @@
 
       <tr>
         <td>
-          <a href="">Edit</a>
+          <a href="/overhead_expenses/<%= cost.id %>">Edit</a>
         </td>
 
         <td>
@@ -364,7 +364,7 @@
     <% @the_production_plan.crops.each do | crop | %>
       <tr>
         <td>
-          <a href="">Edit</a>
+          <a href="/materials/<%=crop.id%>">Edit</a>
         </td>
 
         <td>

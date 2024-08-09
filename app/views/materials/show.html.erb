@@ -6,7 +6,7 @@
 
     <div>
       <div>
-        <a href="/materials">
+        <a href="/production_plans/<%= @the_material.plan_id %>">
           Go back
         </a>
       </div>
@@ -189,11 +189,7 @@
       </div>
 
       <div>
-        <label for="plan_id_box">
-          Plan
-        </label>
-
-        <input type="text" id="plan_id_box" name="query_plan_id" value="<%= @the_material.plan_id %>">
+        <input type="hidden" id="plan_id_box" name="query_plan_id" value="<%= @the_material.plan_id %>">
       </div>
 
       <div>

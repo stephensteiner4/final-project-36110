@@ -86,7 +86,7 @@ class MaterialsController < ApplicationController
 
     if the_material.valid?
       the_material.save
-      redirect_to("/materials/#{the_material.id}", { :notice => "Material updated successfully."} )
+      redirect_to("/production_plans/#{the_material.plan_id}", { :notice => "Material updated successfully."} )
     else
       redirect_to("/materials/#{the_material.id}", { :alert => the_material.errors.full_messages.to_sentence })
     end
