@@ -59,11 +59,27 @@
 
 <div>
   <div>
+    Total ft&sup2;-weeks: <%= @the_production_plan.total_space * @the_production_plan.prod_weeks %>
+  </div>
+
+  <div>
+    Used Space: <%= @used_space %>%
+  </div>
+
+  <div>
     Total Fixed Costs: <%= @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
   </div>
 
   <div>
-    Fixed Costs per ft&sup2; per week: <%= @fixed_per_sqftweek %>
+    Fixed Costs per ft&sup2; per week (incl. Overhead Adjustment): <%= total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
+  </div>
+
+  <div>
+    Total Fixed Costs: <%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
+  </div>
+
+  <div>
+    Total Profit: 
   </div>
 </div>
 
@@ -212,6 +228,126 @@
       </th>
     </tr>
 
+    <tr>
+<!--      <td>
+        <a href="">Add</a>
+      </td>-->
+      <form action="/insert_material" method="post">
+        <div>
+          <td>
+            <button>
+              Add
+            </button>
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <textarea type="text" id="description_box" name="query_description" cols="10" rows="2">
+
+            </textarea>
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="text" id="crop_time_box" name="query_crop_time">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <select id="container_type_box" name="query_container_type">
+              <option value="Pot">Pot</option>
+            </select>
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="container_size_box" name="query_container_size">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=5 type="float" id="totalqty_box" name="query_total_qty">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            N/A
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="material_cost_box" name="query_material_cost">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="unit_container_cost_box" name="query_unit_container_cost">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="unit_tag_cost_box" name="query_unit_tag_cost">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="miscellaneous_box" name="query_miscellaneous">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="buffer_box" name="query_buffer">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            N/A 
+          </td>
+        </div>
+
+        <div>
+          <td>
+            N/A 
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input size=4 type="float" id="unit_price_box" name="query_unit_price">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            N/A 
+          </td>
+        </div>
+
+        <div>
+          <td>
+            N/A 
+          </td>
+        </div>
+
+        <input type="hidden" id="user_box" name="query_user_id" value="<%=current_user.id%>">
+        <input type="hidden" id="plan_box" name="query_plan_id" value="<%=@the_production_plan.id%>">
+
+      </form>
+    
+    </tr>
+
     <% @the_production_plan.crops.each do | crop | %>
       <tr>
         <td>
@@ -267,7 +403,7 @@
         </td>
 
         <td>
-          <%= total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous).round(2) %>
+          <%= total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous + total_overhead).round(2) %>
         </td>
         
         <td>
@@ -279,7 +415,7 @@
         </td>
 
         <td>
-          <%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / @the_production_plan.prod_weeks).round(2) %>
+          <%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2) %>
         </td>
       </tr>
     <% end %>
