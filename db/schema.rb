@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_09_000153) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_09_214122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_000153) do
     t.float "miscellaneous"
     t.float "shrink_opportunity_cost"
     t.float "total_qty"
+    t.float "total_cost"
+    t.float "total_revenue"
   end
 
   create_table "overhead_expenses", force: :cascade do |t|

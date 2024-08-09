@@ -79,7 +79,15 @@
   </div>
 
   <div>
-    Total Profit: 
+    Total Variable Costs: <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
+  </div>
+  
+  <div>
+    Total Qty: <%= @the_production_plan.crops.pluck(:total_qty).sum%> 
+  </div>
+
+  <div>
+    Total Profit: <%= %>
   </div>
 </div>
 
@@ -90,42 +98,11 @@
     Fixed Costs
   </h2>
 
-  <div>
-    <form action="/insert_overhead_expense" method="post">
-      <div>
-        <label for="category_box">
-          Expense Category
-        </label>
-
-        <input type="text" id="category_box" name="query_category">
-      </div>
-
-      <div>
-        <label for="total_cost_box">
-          Total cost
-        </label>
-
-        <input type="text" id="total_cost_box" name="query_total_cost">
-      </div>
-
-      <div>
-        <input type="hidden" id="plan_id_box" name="query_plan_id" value=<%= @the_production_plan.id %>>
-      </div>
-
-      <div>
-        <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id %>>
-      </div>
-
-      <button>
-        Create overhead expense
-      </button>
-    </form>
-  </div>
-
-  <br>
-
   <table border=1>
     <tr>
+      <th>
+        Manage
+      </th> 
       <th>
         Expense
       </th>  
@@ -134,9 +111,45 @@
       </th>
     </tr>
 
+    <tr>
+      <div>
+      <form action="/insert_overhead_expense" method="post">
+        <div>
+          <td>
+            <button>
+              Add
+            </button>
+          </td>
+
+          <td>
+            <input type="text" id="category_box" name="query_category">
+          </td>
+        </div>
+
+        <div>
+          <td>
+            <input type="text" id="total_cost_box" name="query_total_cost">
+          </td>
+        </div>
+
+        <div>
+          <input type="hidden" id="plan_id_box" name="query_plan_id" value=<%= @the_production_plan.id %>>
+        </div>
+
+        <div>
+          <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id %>>
+        </div>
+      </form>
+    </div>
+    </tr>
+
     <% @the_production_plan.fixed_costs.each do | cost | %>
 
       <tr>
+        <td>
+          <a href="">Edit</a>
+        </td>
+
         <td>
           <%= cost.category %>
         </td>

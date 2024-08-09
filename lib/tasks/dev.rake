@@ -135,6 +135,9 @@ task({ :sample_data => :environment }) do
 
       matl.unit_cost = matl.shrink_opportunity_cost + matl.unit_container_cost + matl.unit_tag_cost + matl.material_cost + matl.soil_cost
 
+      matl.total_cost = matl.unit_cost * matl.total_qty
+      matl.total_revenue = matl.unit_price * matl.total_qty
+
       matl.sqft_cost = (matl.unit_cost * matl.total_qty) / matl.bench_space
 
       matl.plan_id = prodplan.id

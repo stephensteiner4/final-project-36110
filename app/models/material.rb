@@ -16,7 +16,9 @@
 #  soil_cost               :float
 #  sqft_cost               :float
 #  sqft_margin             :float
+#  total_cost              :float
 #  total_qty               :float
+#  total_revenue           :float
 #  unit_container_cost     :float
 #  unit_cost               :float
 #  unit_margin             :string
