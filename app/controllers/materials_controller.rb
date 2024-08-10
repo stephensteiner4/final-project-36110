@@ -29,11 +29,6 @@ class MaterialsController < ApplicationController
     the_material.unit_container_cost = params.fetch("query_unit_container_cost")
     the_material.unit_tag_cost = params.fetch("query_unit_tag_cost")
     the_material.miscellaneous = params.fetch("query_miscellaneous")
-
-    the_material.unit_cost = the_material.shrink_opportunity_cost + the_material.unit_container_cost + the_material.unit_tag_cost + the_material.material_cost + the_material.soil_cost
-
-    the_material.total_cost = the_material.unit_cost * the_material.total_qty
-    the_material.total_revenue = the_material.unit_price * the_material.total_qty
     
     the_material.buffer = params.fetch("query_buffer")
     
@@ -53,6 +48,11 @@ class MaterialsController < ApplicationController
     end
     
     the_material.shrink_opportunity_cost = ((the_material.buffer/100.0) * the_material.unit_price).round(2)
+
+    the_material.unit_cost = the_material.shrink_opportunity_cost + the_material.unit_container_cost + the_material.unit_tag_cost + the_material.material_cost + the_material.soil_cost
+
+    the_material.total_cost = the_material.unit_cost * the_material.total_qty
+    the_material.total_revenue = the_material.unit_price * the_material.total_qty
 
     if the_material.valid?
       the_material.save
