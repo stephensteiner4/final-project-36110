@@ -16,6 +16,7 @@
 #  soil_cost               :float
 #  sqft_cost               :float
 #  sqft_margin             :float
+#  total_bench_space_weeks :float
 #  total_cost              :float
 #  total_qty               :float
 #  total_revenue           :float

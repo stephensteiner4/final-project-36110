@@ -24,7 +24,7 @@ class ProductionPlansController < ApplicationController
 
     @fixed_per_sqftweek = (@the_production_plan.fixed_costs.pluck(:total_cost).sum / (@the_production_plan.total_space*52)).round(2)
 
-    @used_space = (@the_production_plan.crops.pluck(:bench_space).sum / (@the_production_plan.total_space * @the_production_plan.prod_weeks)).round(3)*100
+    @used_space = (@the_production_plan.crops.pluck(:total_bench_space_weeks).sum / (@the_production_plan.total_space * @the_production_plan.prod_weeks)).round(3)*100
 
     render({ :template => "production_plans/show" })
   end

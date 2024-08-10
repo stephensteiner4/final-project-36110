@@ -123,6 +123,8 @@ task({ :sample_data => :environment }) do
 
       matl.bench_space = ((diam**2/144.0) * matl.total_qty).round(2)
 
+      matl.total_bench_space_weeks = (matl.bench_space * matl.crop_time)
+
       matl.unit_tag_cost = rand(1..4) / 200.0
 
       matl.unit_container_cost = rand(1..4) / 10.0

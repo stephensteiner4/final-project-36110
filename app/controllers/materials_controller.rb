@@ -45,6 +45,7 @@ class MaterialsController < ApplicationController
     diam = the_material.container_size
     
     the_material.bench_space = ((diam**2/144.0) * the_material.total_qty).round(2)
+    the_material.total_bench_space_weeks = the_material.bench_space * the_material.crop_time
     prodplan = ProductionPlan.where({:id=>params.fetch("query_plan_id").to_i}).at(0)
 
     if the_material.container_type == "Pot"
