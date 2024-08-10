@@ -361,7 +361,7 @@
     
     </tr>
 
-    <% @the_production_plan.crops.order({:created_at=>:desc}).each do | crop | %>
+    <% @the_production_plan.crops.order({:updated_at=>:desc}).each do | crop | %>
       <tr>
         <td>
           <a href="/materials/<%=crop.id%>">Edit</a>

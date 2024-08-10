@@ -1,175 +1,32 @@
 <div>
   <div>
     <h1>
-      Material #<%= @the_material.id %> details
+      Material: <%= @the_material.description %>
     </h1>
+    
+    <h2>
+      Plan: <%= @the_material.grower.name %>
+    </h2>
 
-    <div>
-      <div>
-        <a href="/production_plans/<%= @the_material.plan_id %>">
-          Go back
-        </a>
-      </div>
 
-      <div>
-        <a href="/delete_material/<%= @the_material.id %>">
-          Delete material
-        </a>
-      </div>
-    </div>
 
     <dl>
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_material.description %>
-      </dd>
 
-      <dt>
-        Crop time
-      </dt>
-      <dd>
-        <%= @the_material.crop_time %>
-      </dd>
+      <div>
+        Created at: <%= time_ago_in_words(@the_material.created_at) %> ago
+      </div>
 
-      <dt>
-        Plan
-      </dt>
-      <dd>
-        <%= @the_material.plan_id %>
-      </dd>
-
-      <dt>
-        Material cost
-      </dt>
-      <dd>
-        <%= @the_material.material_cost %>
-      </dd>
-
-      <dt>
-        Retail week
-      </dt>
-      <dd>
-        <%= @the_material.retail_week %>
-      </dd>
-
-      <dt>
-        Container size
-      </dt>
-      <dd>
-        <%= @the_material.container_size %>
-      </dd>
-
-      <dt>
-        Soil cost
-      </dt>
-      <dd>
-        <%= @the_material.soil_cost %>
-      </dd>
-
-      <dt>
-        Unit price
-      </dt>
-      <dd>
-        <%= @the_material.unit_price %>
-      </dd>
-
-      <dt>
-        Unit margin
-      </dt>
-      <dd>
-        <%= @the_material.unit_margin %>
-      </dd>
-
-      <dt>
-        Buffer
-      </dt>
-      <dd>
-        <%= @the_material.buffer %>
-      </dd>
-
-      <dt>
-        Bench space
-      </dt>
-      <dd>
-        <%= @the_material.bench_space %>
-      </dd>
-
-      <dt>
-        Unit cost
-      </dt>
-      <dd>
-        <%= @the_material.unit_cost %>
-      </dd>
-
-      <dt>
-        Sqft cost
-      </dt>
-      <dd>
-        <%= @the_material.sqft_cost %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_material.user_id %>
-      </dd>
-
-      <dt>
-        Sqft margin
-      </dt>
-      <dd>
-        <%= @the_material.sqft_margin %>
-      </dd>
-
-      <dt>
-        Container type
-      </dt>
-      <dd>
-        <%= @the_material.container_type %>
-      </dd>
-
-      <dt>
-        Unit container cost
-      </dt>
-      <dd>
-        <%= @the_material.unit_container_cost %>
-      </dd>
-
-      <dt>
-        Unit tag cost
-      </dt>
-      <dd>
-        <%= @the_material.unit_tag_cost %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_material.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_material.updated_at) %> ago
-      </dd>
-    </dl>
+      <div>
+        Updated at: <%= time_ago_in_words(@the_material.updated_at) %> ago
+      </div>
   </div>
 </div>
 
-<hr>
+<br>
 
 
 <div>
   <div>
-    <h2>
-      Edit material
-    </h2>
 
     <form action="/modify_material/<%= @the_material.id %>"  method="post" >
       <div>
@@ -177,7 +34,9 @@
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description" value="<%= @the_material.description %>">
+        <textarea type="text" id="description_box" name="query_description" rows="2">
+          <%= @the_material.description %>
+        </textarea>
       </div>
 
       <div>
@@ -185,27 +44,11 @@
           Crop time
         </label>
 
-        <input type="text" id="crop_time_box" name="query_crop_time" value="<%= @the_material.crop_time %>">
+        <input type="integer" id="crop_time_box" name="query_crop_time" value="<%= @the_material.crop_time %>">
       </div>
 
       <div>
         <input type="hidden" id="plan_id_box" name="query_plan_id" value="<%= @the_material.plan_id %>">
-      </div>
-
-      <div>
-        <label for="material_cost_box">
-          Material cost
-        </label>
-
-        <input type="text" id="material_cost_box" name="query_material_cost" value="<%= @the_material.material_cost %>">
-      </div>
-
-      <div>
-        <label for="retail_week_box">
-          Retail week
-        </label>
-
-        <input type="text" id="retail_week_box" name="query_retail_week" value="<%= @the_material.retail_week %>">
       </div>
 
       <div>
@@ -217,27 +60,13 @@
       </div>
 
       <div>
-        <label for="soil_cost_box">
-          Soil cost
+        <label for="container_type_box">
+          Container type
         </label>
 
-        <input type="text" id="soil_cost_box" name="query_soil_cost" value="<%= @the_material.soil_cost %>">
-      </div>
-
-      <div>
-        <label for="unit_price_box">
-          Unit price
-        </label>
-
-        <input type="text" id="unit_price_box" name="query_unit_price" value="<%= @the_material.unit_price %>">
-      </div>
-
-      <div>
-        <label for="unit_margin_box">
-          Unit margin
-        </label>
-
-        <input type="text" id="unit_margin_box" name="query_unit_margin" value="<%= @the_material.unit_margin %>">
+        <select id="container_type_box" name="query_container_type">
+          <option value="Pot">Pot</option>
+        </select>
       </div>
 
       <div>
@@ -249,51 +78,15 @@
       </div>
 
       <div>
-        <label for="bench_space_box">
-          Bench space
-        </label>
-
-        <input type="text" id="bench_space_box" name="query_bench_space" value="<%= @the_material.bench_space %>">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_material.user_id %>">
       </div>
 
       <div>
-        <label for="unit_cost_box">
-          Unit cost
+        <label for="material_cost_box">
+          Material cost
         </label>
 
-        <input type="text" id="unit_cost_box" name="query_unit_cost" value="<%= @the_material.unit_cost %>">
-      </div>
-
-      <div>
-        <label for="sqft_cost_box">
-          Sqft cost
-        </label>
-
-        <input type="text" id="sqft_cost_box" name="query_sqft_cost" value="<%= @the_material.sqft_cost %>">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_material.user_id %>">
-      </div>
-
-      <div>
-        <label for="sqft_margin_box">
-          Sqft margin
-        </label>
-
-        <input type="text" id="sqft_margin_box" name="query_sqft_margin" value="<%= @the_material.sqft_margin %>">
-      </div>
-
-      <div>
-        <label for="container_type_box">
-          Container type
-        </label>
-
-        <input type="text" id="container_type_box" name="query_container_type" value="<%= @the_material.container_type %>">
+        <input type="float" id="material_cost_box" name="query_material_cost" value="<%= @the_material.material_cost %>">
       </div>
 
       <div>
@@ -311,6 +104,14 @@
 
         <input type="text" id="unit_tag_cost_box" name="query_unit_tag_cost" value="<%= @the_material.unit_tag_cost %>">
       </div>
+      
+      <div>
+        <label for="unit_price_box">
+          Unit price
+        </label>
+
+        <input type="text" id="unit_price_box" name="query_unit_price" value="<%= @the_material.unit_price %>">
+      </div>
 
       <button>
         Update material
@@ -320,3 +121,17 @@
 </div>
 
 <hr>
+
+<div>
+  <div>
+    <a href="/production_plans/<%= @the_material.plan_id %>">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_material/<%= @the_material.id %>">
+      Delete material
+    </a>
+  </div>
+</div>
