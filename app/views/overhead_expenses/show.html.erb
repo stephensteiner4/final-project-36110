@@ -1,78 +1,26 @@
 <div>
   <div>
     <h1>
-      Overhead expense #<%= @the_overhead_expense.id %> details
+      Overhead Expense: <%= @the_overhead_expense.category %>
     </h1>
 
-    <div>
+
+    
+      <h2>
+        Plan: <%= @the_overhead_expense.plan.name %>
+      </h2>
+
       <div>
-        <a href="/production_plans/<%= @the_overhead_expense.plan_id %>">
-          Go back
-        </a>
+        Created at: <%= time_ago_in_words(@the_overhead_expense.created_at) %> ago
       </div>
 
       <div>
-        <a href="/delete_overhead_expense/<%= @the_overhead_expense.id %>">
-          Delete overhead expense
-        </a>
+        Updated at: <%= time_ago_in_words(@the_overhead_expense.updated_at) %> ago
       </div>
-    </div>
 
-    <dl>
-      <dt>
-        Category
-      </dt>
-      <dd>
-        <%= @the_overhead_expense.category %>
-      </dd>
+<br>
 
-      <dt>
-        Total cost
-      </dt>
-      <dd>
-        <%= @the_overhead_expense.total_cost %>
-      </dd>
-
-      <dt>
-        Plan
-      </dt>
-      <dd>
-        <%= @the_overhead_expense.plan_id %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_overhead_expense.user_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_overhead_expense.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_overhead_expense.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
   <div>
-    <h2>
-      Edit overhead expense
-    </h2>
-
     <form action="/modify_overhead_expense/<%= @the_overhead_expense.id %>"  method="post" >
       <div>
         <label for="category_box">
@@ -105,6 +53,21 @@
       </button>
     </form>
   </div>
+
 </div>
 
 <hr>
+
+    <div>
+      <div>
+        <a href="/production_plans/<%= @the_overhead_expense.plan_id %>">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_overhead_expense/<%= @the_overhead_expense.id %>">
+          Delete overhead expense
+        </a>
+      </div>
+    </div>
