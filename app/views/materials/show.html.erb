@@ -52,14 +52,6 @@
       </div>
 
       <div>
-        <label for="container_size_box">
-          Container size
-        </label>
-
-        <input type="text" id="container_size_box" name="query_container_size" value="<%= @the_material.container_size %>">
-      </div>
-
-      <div>
         <label for="container_type_box">
           Container type
         </label>
@@ -70,11 +62,19 @@
       </div>
 
       <div>
-        <label for="buffer_box">
-          Buffer
+        <label for="container_size_box">
+          Container size
         </label>
 
-        <input type="text" id="buffer_box" name="query_buffer" value="<%= @the_material.buffer %>">
+        <input type="text" id="container_size_box" name="query_container_size" value="<%= @the_material.container_size %>">
+      </div>
+      
+      <div>
+        <label for="total_qty_box">
+          Total Quantity
+        </label>
+
+        <input type="float" id="total_qty_box" name="query_total_qty" value="<%= @the_material.total_qty %>">
       </div>
 
       <div>
@@ -103,6 +103,22 @@
         </label>
 
         <input type="text" id="unit_tag_cost_box" name="query_unit_tag_cost" value="<%= @the_material.unit_tag_cost %>">
+      </div>
+
+      <div>
+        <label for="miscellaneous_cost_box">
+          Miscellaneous cost
+        </label>
+
+        <input type="text" id="miscellaneous_cost_box" name="query_miscellaneous" value="<%= @the_material.miscellaneous %>">
+      </div>
+
+      <div>
+        <label for="buffer_box">
+          Buffer %
+        </label>
+
+        <input type="text" id="buffer_box" name="query_buffer" value="<%= @the_material.buffer %>">
       </div>
       
       <div>
