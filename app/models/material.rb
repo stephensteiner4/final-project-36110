@@ -11,18 +11,15 @@
 #  description             :string
 #  material_cost           :float
 #  miscellaneous           :float
-#  retail_week             :integer
 #  shrink_opportunity_cost :float
 #  soil_cost               :float
 #  sqft_cost               :float
-#  sqft_margin             :float
 #  total_bench_space_weeks :float
 #  total_cost              :float
 #  total_qty               :float
 #  total_revenue           :float
 #  unit_container_cost     :float
 #  unit_cost               :float
-#  unit_margin             :string
 #  unit_price              :float
 #  unit_tag_cost           :float
 #  created_at              :datetime         not null

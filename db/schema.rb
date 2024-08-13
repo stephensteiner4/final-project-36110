@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_131940) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_13_225029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,17 +40,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_131940) do
     t.integer "crop_time"
     t.integer "plan_id"
     t.float "material_cost"
-    t.integer "retail_week"
     t.integer "container_size"
     t.float "soil_cost"
     t.float "unit_price"
-    t.string "unit_margin"
     t.float "buffer"
     t.float "bench_space"
     t.float "unit_cost"
     t.float "sqft_cost"
     t.integer "user_id"
-    t.float "sqft_margin"
     t.string "container_type"
     t.float "unit_container_cost"
     t.float "unit_tag_cost"
@@ -71,7 +68,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_131940) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "direct_cost"
   end
 
   create_table "production_plans", force: :cascade do |t|
