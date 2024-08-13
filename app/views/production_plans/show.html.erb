@@ -72,7 +72,7 @@
 
   <div>
     <% total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
-    <% if total_overhead.infinite?() %>
+    <% if total_overhead.infinite?() | total_overhead.nan?() %>
       Fixed Costs per ft&sup2; per week (incl. Overhead Adjustment): 0
     <% else %>
       Fixed Costs per ft&sup2; per week (incl. Overhead Adjustment): <%= total_overhead  %>
