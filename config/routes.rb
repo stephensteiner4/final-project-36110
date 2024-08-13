@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_material", { :controller => "materials", :action => "create" })
+
+  # COPY
+  post("/copy_material/:path_id", { :controller => "materials", :action => "copy" })
           
   # READ
   
@@ -44,6 +47,9 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_production_plan", { :controller => "production_plans", :action => "create" })
+
+  # CREATE
+  post("/copy_production_plan/:path_id", { :controller => "production_plans", :action => "copy" })
           
   # READ
   get("/production_plans", { :controller => "production_plans", :action => "index" })

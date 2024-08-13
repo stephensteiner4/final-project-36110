@@ -15,7 +15,6 @@
 class ProductionPlan < ApplicationRecord
   # has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
   has_many :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
-  has_many  :space_utilization_decisions, class_name: "GreenhouseUtilization", foreign_key: "plan_id", dependent: :destroy
   belongs_to :grower, required: true, class_name: "User", foreign_key: "user_id"
   has_many  :crops, class_name: "Material", foreign_key: "plan_id", dependent: :destroy
 end

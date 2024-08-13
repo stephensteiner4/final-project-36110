@@ -71,6 +71,22 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def copy
+    the_id = params.fetch("path_id")
+    the_material = Material.where({ :id => the_id }).at(0)
+
+    the_material2 = the_material.dup
+
+    if the_material2.valid?
+      the_material2.save
+      
+      redirect_to("/production_plans/#{the_material.plan_id}", { :notice => "Material copied successfully." })
+    else
+      redirect_to("/production_plans/#{the_material.plan_id}", { :alert => the_material.errors.full_messages.to_sentence })
+    end
+
+  end
+
   def update
     the_id = params.fetch("path_id")
     the_material = Material.where({ :id => the_id }).at(0)
@@ -127,6 +143,6 @@ class MaterialsController < ApplicationController
 
     the_material.destroy
 
-    redirect_to("/materials", { :notice => "Material deleted successfully."} )
+    redirect_to("/production_plans/#{the_material.plan_id}", { :notice => "Material deleted successfully."} )
   end
 end

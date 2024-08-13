@@ -75,7 +75,7 @@
     <table border="1">
       <tr>
         <th>
-          ID
+          Manage
         </th>
         
         <th>
@@ -113,7 +113,8 @@
       <% @list_of_production_plans.each do |a_production_plan| %>
       <tr>
         <td>
-          <%= a_production_plan.id %>
+          <form action="/production_plans/<%= a_production_plan.id %>" method="get"><button>Details</button></form>
+          <form action="/copy_production_plan/<%= a_production_plan.id %>" method="post"><button>Copy</button></form>
         </td>
 
         <td>
@@ -143,11 +144,11 @@
           <%= time_ago_in_words(a_production_plan.updated_at) %> ago
         </td>
 
-        <td>
-          <a href="/production_plans/<%= a_production_plan.id %>">
+<!--        <td>
+          <a href="/production_plans/<%#= a_production_plan.id %>">
             Show details
           </a>
-        </td>
+        </td>-->
       </tr>
       <% end %>
     </table>
