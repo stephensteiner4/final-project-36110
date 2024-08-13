@@ -42,41 +42,41 @@ task({ :sample_data => :environment }) do
 
   end
 
-#### Greenhouse Utilization sample data
-  ProductionPlan.all.each do | prodplan |
+# #### Greenhouse Utilization sample data
+#   ProductionPlan.all.each do | prodplan |
 
-    12.times do | i |
-      space = GreenhouseUtilization.new
+#     12.times do | i |
+#       space = GreenhouseUtilization.new
 
-      space.time = (i+1)
+#       space.time = (i+1)
 
-      space.plan_id = prodplan.id
-      space.user_id = prodplan.user_id
+#       space.plan_id = prodplan.id
+#       space.user_id = prodplan.user_id
 
-      if prodplan.total_space >=50000
-        if (i+1) <= 5
-          space.total_benchspace = prodplan.total_space * ((i+1)/5.0)
-        elsif ((i+1) > 5) & ((i+1) <= 8)
-          space.total_benchspace = prodplan.total_space * (5.0/(i+1))
-        elsif ((i+1) == 9)
-          space.total_benchspace = 0
-        elsif ((i+1) > 9) & ((i+1) < 12)
-          space.total_benchspace = prodplan.total_space * (0.25)
-        elsif ((i+1) == 12)
-          space.total_benchspace = 0
-        end
-      elsif
-        if ((i+1) <= 9) | ((i+1)!=1)
-          space.total_benchspace = prodplan.total_space
-        elsif ((i+1) > 10) | ((i+1)==1)
-          space.total_benchspace = 0
-        end
-      end
+#       if prodplan.total_space >=50000
+#         if (i+1) <= 5
+#           space.total_benchspace = prodplan.total_space * ((i+1)/5.0)
+#         elsif ((i+1) > 5) & ((i+1) <= 8)
+#           space.total_benchspace = prodplan.total_space * (5.0/(i+1))
+#         elsif ((i+1) == 9)
+#           space.total_benchspace = 0
+#         elsif ((i+1) > 9) & ((i+1) < 12)
+#           space.total_benchspace = prodplan.total_space * (0.25)
+#         elsif ((i+1) == 12)
+#           space.total_benchspace = 0
+#         end
+#       elsif
+#         if ((i+1) <= 9) | ((i+1)!=1)
+#           space.total_benchspace = prodplan.total_space
+#         elsif ((i+1) > 10) | ((i+1)==1)
+#           space.total_benchspace = 0
+#         end
+#       end
 
-      space.save
+#       space.save
 
-    end
-  end
+#     end
+#   end
 
 #### Fixed expenses sample data
   ProductionPlan.all.each do | prodplan |

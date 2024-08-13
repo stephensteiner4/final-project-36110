@@ -22,25 +22,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Greenhouse utilization resource:
-
-  # CREATE
-  post("/insert_greenhouse_utilization", { :controller => "greenhouse_utilizations", :action => "create" })
-          
-  # READ
-  get("/greenhouse_utilizations", { :controller => "greenhouse_utilizations", :action => "index" })
-  
-  get("/greenhouse_utilizations/:path_id", { :controller => "greenhouse_utilizations", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_greenhouse_utilization/:path_id", { :controller => "greenhouse_utilizations", :action => "update" })
-  
-  # DELETE
-  get("/delete_greenhouse_utilization/:path_id", { :controller => "greenhouse_utilizations", :action => "destroy" })
-
-  #------------------------------
-
   # Routes for the Overhead expense resource:
 
   # CREATE
