@@ -107,7 +107,7 @@ task({ :sample_data => :environment }) do
 
       matl.material_cost = rand(20..100) / 100.0
 
-      matl.container_type = "Pot" #["Basket", "Tray", "Pot"]
+      matl.container_type = ["Pot", "Tray"].sample #["Basket", "Tray", "Pot"]
 
       if matl.container_type == "Pot"
         diam = rand(4..10)
@@ -117,11 +117,28 @@ task({ :sample_data => :environment }) do
         matl.soil_cost = (((3.14 * ((diam/2)**2) * diam) / 46656.0) * prodplan.soil_cost).round(2)
         
         matl.unit_price = ((diam ** 2) / 3.5).round(2)
+      elsif matl.container_type == "Tray"
+        diam = [102, 24, 72, 50].sample
+
+        matl.container_size = diam
+
+        ### Typical tray area: 11x22
+        cell_volume = Math.sqrt((11*22.0)/diam)**3
+
+        matl.soil_cost = ((cell_volume / 46656) * prodplan.soil_cost).round(2)
+        
+        matl.unit_price = (12.0/Math.sqrt(diam)).round(2)
+
+        matl.material_cost = matl.material_cost / 2.0
       end
 
       matl.total_qty = rand(100..10000)
 
-      matl.bench_space = ((diam**2/144.0) * matl.total_qty).round(2)
+      if matl.container_type == "Pot"
+        matl.bench_space = ((diam**2/144.0) * matl.total_qty).round(2)
+      elsif matl.container_type == "Tray"
+        matl.bench_space = (((11*22)/144.0) * (matl.total_qty / diam)).round(2)
+      end
 
       matl.total_bench_space_weeks = (matl.bench_space * matl.crop_time)
 
