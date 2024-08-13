@@ -29,7 +29,7 @@
           Description
         </label>
 
-        <input type="text" id="description_box" name="query_description">
+        <textarea type="text" id="description_box" name="query_description" rows=3></textarea>
       </div>
       
       <div>
@@ -141,7 +141,7 @@
           <%= time_ago_in_words(a_production_plan.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words(a_production_plan.updated_at) %> ago
+          <%= time_ago_in_words([a_production_plan.updated_at, a_production_plan.fixed_costs.pluck(:updated_at).max, a_production_plan.crops.pluck(:updated_at).max ].max) %> ago
         </td>
 
 <!--        <td>
@@ -154,5 +154,3 @@
     </table>
   </div>
 </div>
-
-<hr>

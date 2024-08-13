@@ -55,6 +55,6 @@ class OverheadExpensesController < ApplicationController
 
     the_overhead_expense.destroy
 
-    redirect_to("/overhead_expenses", { :notice => "Overhead expense deleted successfully."} )
+    redirect_to("/production_plans/#{the_overhead_expense.plan_id}", { :notice => "Overhead expense deleted successfully."} )
   end
 end

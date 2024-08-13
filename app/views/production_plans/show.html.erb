@@ -148,7 +148,7 @@
     </div>
     </tr>
 
-    <% @the_production_plan.fixed_costs.each do | cost | %>
+    <% @the_production_plan.fixed_costs.order({:updated_at=>:desc}).each do | cost | %>
 
       <tr>
         <td>
@@ -261,9 +261,7 @@
 
         <div>
           <td>
-            <textarea type="text" id="description_box" name="query_description" cols="10" rows="2">
-
-            </textarea>
+            <textarea type="text" id="description_box" name="query_description" cols="10" rows="2"></textarea>
           </td>
         </div>
 
