@@ -141,7 +141,18 @@
           <%= time_ago_in_words(a_production_plan.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words([a_production_plan.updated_at, a_production_plan.fixed_costs.pluck(:updated_at).max, a_production_plan.crops.pluck(:updated_at).max ].max) %> ago
+          <% if (a_production_plan.fixed_costs.at(0).nil?)  & (a_production_plan.crops.at(0).nil?) %>
+            <%= time_ago_in_words(a_production_plan.updated_at) %> ago
+            
+          <% elsif a_production_plan.crops.at(0).nil? %>
+            <%= time_ago_in_words([a_production_plan.updated_at, a_production_plan.fixed_costs.pluck(:updated_at).max ].max) %> ago
+
+          <% elsif a_production_plan.fixed_costs.at(0).nil? %>
+            <%= time_ago_in_words([a_production_plan.updated_at, a_production_plan.crops.pluck(:updated_at).max].max) %> ago
+
+          <% else %>
+            <%= time_ago_in_words([a_production_plan.updated_at, a_production_plan.fixed_costs.pluck(:updated_at).max, a_production_plan.crops.pluck(:updated_at).max ].max) %> ago
+          <% end %>
         </td>
 
 <!--        <td>
