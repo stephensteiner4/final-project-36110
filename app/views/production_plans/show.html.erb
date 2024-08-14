@@ -9,7 +9,7 @@
 
 
 <div>
-  <div>
+  <div style="padding-right:1000px;">
 
     <form action="/modify_production_plan/<%= @the_production_plan.id %>"  method="post" >
       <div>
@@ -17,11 +17,7 @@
           Description
         </label>
 
-        <textarea type="text" id="description_box" name="query_description" rows=3><%= @the_production_plan.description %></textarea>
-      </div>
-
-      <div>
-        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_production_plan.user_id %>">
+        <textarea class="form-control border-dark" type="text" id="description_box" name="query_description" rows=3><%= @the_production_plan.description %></textarea>
       </div>
 
       <div>
@@ -29,7 +25,7 @@
           Total Usable Bench Space (ft&sup2;)
         </label>
 
-        <input type="float" id="space_box" name="query_space" value="<%= @the_production_plan.total_space %>">
+        <input class="form-control border-dark" type="float" id="space_box" name="query_space" value="<%= @the_production_plan.total_space %>">
       </div>
 
       <div>
@@ -37,7 +33,7 @@
           Soil Cost per yd&sup3;
         </label>
 
-        <input type="float" id="soil_box" name="query_soil" value="<%= @the_production_plan.soil_cost %>">
+        <input class="form-control border-dark" type="float" id="soil_box" name="query_soil" value="<%= @the_production_plan.soil_cost %>">
       </div>
 
       <div>
@@ -45,7 +41,7 @@
           Production Weeks
         </label>
 
-        <input type="float" id="weeks_box" name="query_prodweeks" value="<%= @the_production_plan.prod_weeks %>">
+        <input class="form-control border-dark" type="float" id="weeks_box" name="query_prodweeks" value="<%= @the_production_plan.prod_weeks %>">
       </div>
 
       <button class="btn btn-outline-danger btn-sm">
@@ -107,23 +103,22 @@
     <p>List your fixed production costs and any overhead costs you will incur during this production period.</p>
   </div>
 
-  <table class="table table-striped table-sm">
-    <tr>
-      <th>
-        Manage
-      </th> 
-      <th>
-        Expense
-      </th>  
-      <th>
-        Cost
-      </th>
-    </tr>
+  <div  style="padding-right:700px">
+    <table class="table table-striped table-sm">
+      <tr>
+        <th>
+          Manage
+        </th> 
+        <th>
+          Expense
+        </th>  
+        <th>
+          Cost
+        </th>
+      </tr>
 
-    <tr>
-      <div>
-      <form action="/insert_overhead_expense" method="post">
-        <div>
+      <tr>
+        <form action="/insert_overhead_expense" method="post">
           <td>
             <button class="btn btn-outline-danger btn-sm">
               Add
@@ -131,41 +126,37 @@
           </td>
 
           <td>
-            <input type="text" id="category_box" name="query_category">
+            <input class="form-control border-dark" type="text" id="category_box" name="query_category">
           </td>
-        </div>
 
-        <div>
           <td>
-            <input type="text" id="total_cost_box" name="query_total_cost">
+            <input class="form-control border-dark" type="text" id="total_cost_box" name="query_total_cost">
           </td>
-        </div>
 
-        <div>
           <input type="hidden" id="plan_id_box" name="query_plan_id" value=<%= @the_production_plan.id %>>
-        </div>
-      </form>
-    </div>
-    </tr>
-
-    <% @the_production_plan.fixed_costs.order({:updated_at=>:desc}).each do | cost | %>
-
-      <tr>
-        <td>
-          <form action="/overhead_expenses/<%= cost.id %>" method="get"><button class="btn btn-outline-danger btn-sm">Edit</button></form>
-        </td>
-
-        <td>
-          <%= cost.category %>
-        </td>
-      
-        <td>
-          <%= cost.total_cost %>
-        </td>
+        </form>
       </tr>
 
-    <% end %>
-  </table>
+      <% @the_production_plan.fixed_costs.order({:updated_at=>:desc}).each do | cost | %>
+
+        <tr>
+          <td>
+            <form action="/overhead_expenses/<%= cost.id %>" method="get"><button class="btn btn-outline-danger btn-sm">Edit</button></form>
+          </td>
+
+          <td>
+            <%= cost.category %>
+          </td>
+        
+          <td>
+            <%= cost.total_cost %>
+          </td>
+        </tr>
+
+      <% end %>
+    </table>
+  </div>
+
 </div>
 
 <hr>
@@ -252,116 +243,79 @@
       </tr>
 
       <tr>
-  <!--      <td>
-          <a href="">Add</a>
-        </td>-->
         <form action="/insert_material" method="post">
-          <div>
-            <td>
-              <button class="btn btn-outline-danger btn-sm">
-                Add
-              </button>
-            </td>
-          </div>
+          <td>
+            <button class="btn btn-outline-danger btn-sm">
+              Add
+            </button>
+          </td>
 
-          <div>
-            <td>
-              <textarea type="text" id="description_box" name="query_description" cols="10" rows="2"></textarea>
-            </td>
-          </div>
+          <td>
+            <textarea class="form-control border-dark" type="text" id="description_box" name="query_description" cols="10" rows="2"></textarea>
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="text" id="crop_time_box" name="query_crop_time">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" size=4 type="text" id="crop_time_box" name="query_crop_time">
+          </td>
 
-          <div>
-            <td>
-              <select id="container_type_box" name="query_container_type">
-                <option value="Pot">Pot</option>
-                <option value="Tray">Tray</option>
-              </select>
-            </td>
-          </div>
+          <td>
+            <select class="form-select border-dark" id="container_type_box" name="query_container_type">
+              <option value="Pot">Pot</option>
+              <option value="Tray">Tray</option>
+            </select>
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="container_size_box" name="query_container_size">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark"  type="float" id="container_size_box" name="query_container_size">
+          </td>
 
-          <div>
-            <td>
-              <input size=5 type="float" id="totalqty_box" name="query_total_qty">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="totalqty_box" name="query_total_qty">
+          </td>
 
-          <div>
-            <td>
-              N/A
-            </td>
-          </div>
+          <td>
+            N/A
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="material_cost_box" name="query_material_cost">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="material_cost_box" name="query_material_cost">
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="unit_container_cost_box" name="query_unit_container_cost">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="unit_container_cost_box" name="query_unit_container_cost">
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="unit_tag_cost_box" name="query_unit_tag_cost">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="unit_tag_cost_box" name="query_unit_tag_cost">
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="miscellaneous_box" name="query_miscellaneous">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="miscellaneous_box" name="query_miscellaneous">
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="buffer_box" name="query_buffer">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="buffer_box" name="query_buffer">
+          </td>
 
-          <div>
-            <td>
-              N/A 
-            </td>
-          </div>
+          <td>
+            N/A 
+          </td>
 
-          <div>
-            <td>
-              N/A 
-            </td>
-          </div>
+          <td>
+            N/A 
+          </td>
 
-          <div>
-            <td>
-              <input size=4 type="float" id="unit_price_box" name="query_unit_price">
-            </td>
-          </div>
+          <td>
+            <input class="form-control border-dark" type="float" id="unit_price_box" name="query_unit_price">
+          </td>
 
-          <div>
-            <td>
-              N/A 
-            </td>
-          </div>
+          <td>
+            N/A 
+          </td>
 
-          <div>
-            <td>
-              N/A 
-            </td>
-          </div>
+          <td>
+            N/A 
+          </td>
 
           <input type="hidden" id="plan_box" name="query_plan_id" value="<%=@the_production_plan.id%>">
 
@@ -444,21 +398,8 @@
     </table>
   </div>
 </div>
+
 <hr>
-
-<div>
-  <div>
-    <a href="/production_plans">
-      Go back
-    </a>
-  </div>
-
-  <div>
-    <a href="/delete_production_plan/<%= @the_production_plan.id %>">
-      Delete production plan
-    </a>
-  </div>
-</div>
 
 <div>
   <dl>
@@ -476,4 +417,20 @@
       <%= time_ago_in_words(@the_production_plan.updated_at) %> ago
     </dd>
   </dl>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <a href="/production_plans">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_production_plan/<%= @the_production_plan.id %>">
+      Delete production plan
+    </a>
+  </div>
 </div>
