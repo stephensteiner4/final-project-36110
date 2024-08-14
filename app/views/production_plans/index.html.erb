@@ -1,72 +1,15 @@
 <div>
   <div>
     <h1>
-      List of all production plans
+      Manage Production Plans
     </h1>
   </div>
 </div>
 
-<hr>
-
 <div>
-  <div>
-    <h2>
-      Add a new production plan
-    </h2>
 
-    <form action="/insert_production_plan" method="post">
-    
-      <div>
-        <label for="name_box">
-          Name
-        </label>
+  <h3>Use the table below to create a new production plan or manage your existing plans.</h3>
 
-        <input type="text" id="name_box" name="query_name">
-      </div>
-      
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea type="text" id="description_box" name="query_description" rows=3></textarea>
-      </div>
-      
-      <div>
-        <label for="prodweeks_box">
-          Production Weeks
-        </label>
-
-        <input type="text" id="prodweeks_box" name="query_prodweeks">
-      </div>
-      
-      <div>
-        <label for="space_box">
-          Total Usable Space
-        </label>
-
-        <input type="float" id="space_box" name="query_space">
-      </div>
-
-      <div>
-        <label for="soil_box">
-          Soil Cost per yd&sup3;
-        </label>
-
-        <input type="float" id="soil_box" name="query_soil">
-      </div>
-
-
-      <div>
-
-        <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id%>>
-      </div>
-
-      <button>
-        Create production plan
-      </button>
-    </form>
-  </div>
 </div>
 
 <hr>
@@ -91,11 +34,11 @@
         </th>
 
         <th>
-          Total Usable Space
+          Total Usable Bench Space (ft&sup2;)
         </th>
 
         <th>
-          Soil Cost
+          Soil Cost per yd&sup3;
         </th>
 
         <th>
@@ -105,6 +48,60 @@
         <th>
           Updated at
         </th>
+      </tr>
+
+      <tr>
+
+          <form action="/insert_production_plan" method="post">
+            <div>
+              <td>
+                <button>
+                  Create
+                </button>
+              </td>
+            </div>
+          
+            <div>
+              <td>
+                <input type="text" id="name_box" name="query_name">
+              </td>
+            </div>
+            
+            <div>
+              <td>
+                <textarea type="text" id="description_box" name="query_description" rows=2></textarea>
+              </td>
+            </div>
+            
+            <div>
+              <td>
+                <input type="text" id="prodweeks_box" name="query_prodweeks">
+              </td>
+            </div>
+            
+            <div>
+              <td>
+                <input type="float" id="space_box" name="query_space">
+              </td>
+            </div>
+
+            <div>
+              <td>
+                <input type="float" id="soil_box" name="query_soil">
+              </td>
+            </div>
+          </form>
+
+          <div>
+            <td>
+              N/A
+            </td>
+          </div>
+          <div>
+            <td>
+              N/A
+            </td>
+          </div>
       </tr>
 
       <% @list_of_production_plans.each do |a_production_plan| %>
