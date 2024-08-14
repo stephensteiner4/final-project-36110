@@ -48,8 +48,8 @@
         <input type="float" id="weeks_box" name="query_prodweeks" value="<%= @the_production_plan.prod_weeks %>">
       </div>
 
-      <button>
-        Update production plan
+      <button class="btn btn-outline-danger btn-sm">
+        Update
       </button>
     </form>
   </div>
@@ -107,7 +107,7 @@
     <p>List your fixed production costs and any overhead costs you will incur during this production period.</p>
   </div>
 
-  <table border=1>
+  <table class="table table-striped table-sm">
     <tr>
       <th>
         Manage
@@ -125,7 +125,7 @@
       <form action="/insert_overhead_expense" method="post">
         <div>
           <td>
-            <button>
+            <button class="btn btn-outline-danger btn-sm">
               Add
             </button>
           </td>
@@ -152,7 +152,7 @@
 
       <tr>
         <td>
-          <form action="/overhead_expenses/<%= cost.id %>" method="get"><button>Edit</button></form>
+          <form action="/overhead_expenses/<%= cost.id %>" method="get"><button class="btn btn-outline-danger btn-sm">Edit</button></form>
         </td>
 
         <td>
@@ -180,7 +180,7 @@
   </div>
 
   <div>
-    <table border=1>
+    <table class="table table-striped table-sm">
       <tr>
         <th>
           Manage
@@ -199,7 +199,7 @@
         </th>
 
         <th>
-          Pot Diameter (inches)/Cell Count
+          Pot Diameter (inches)/ Cell Count
         </th>
 
         <th>
@@ -223,7 +223,7 @@
         </th>
 
         <th>
-          Miscellaneous Unit Costs
+          Misc. Unit Costs
         </th>
 
         <th>
@@ -258,7 +258,7 @@
         <form action="/insert_material" method="post">
           <div>
             <td>
-              <button>
+              <button class="btn btn-outline-danger btn-sm">
                 Add
               </button>
             </td>
@@ -372,8 +372,8 @@
       <% @the_production_plan.crops.order({:updated_at=>:desc}).each do | crop | %>
         <tr>
           <td>
-            <form action="/materials/<%=crop.id%>" method="get"><button>Edit</button></form>
-            <form action="/copy_material/<%=crop.id%>" method="post"><button>Copy</button></form>
+            <form action="/materials/<%=crop.id%>" method="get"><button class="btn btn-outline-danger btn-sm">Edit</button></form>
+            <form action="/copy_material/<%=crop.id%>" method="post"><button class="btn btn-outline-danger btn-sm">Copy</button></form>
           </td>
 
           <td>

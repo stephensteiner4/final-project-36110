@@ -10,12 +10,13 @@
 
   <h3>Use the table below to create a new production plan or manage your existing plans.</h3>
 
+  <br>
+
 </div>
 
-<hr>
 <div>
   <div>
-    <table border="1">
+    <table class="table table-striped table-sm">
       <tr>
         <th>
           Manage
@@ -55,7 +56,7 @@
           <form action="/insert_production_plan" method="post">
             <div>
               <td>
-                <button>
+                <button class="btn btn-outline-danger btn-sm">
                   Create
                 </button>
               </td>
@@ -63,31 +64,31 @@
           
             <div>
               <td>
-                <input type="text" id="name_box" name="query_name">
+                <input size=4 type="text" id="name_box" name="query_name">
               </td>
             </div>
             
             <div>
               <td>
-                <textarea type="text" id="description_box" name="query_description" rows=2></textarea>
+                <textarea type="text" id="description_box" name="query_description" rows=1></textarea>
               </td>
             </div>
             
             <div>
               <td>
-                <input type="text" id="prodweeks_box" name="query_prodweeks">
+                <input size=4 type="integer" id="prodweeks_box" name="query_prodweeks" cols=4>
               </td>
             </div>
             
             <div>
               <td>
-                <input type="float" id="space_box" name="query_space">
+                <input size=4 type="float" id="space_box" name="query_space">
               </td>
             </div>
 
             <div>
               <td>
-                <input type="float" id="soil_box" name="query_soil">
+                <input size=4 type="float" id="soil_box" name="query_soil">
               </td>
             </div>
           </form>
@@ -107,8 +108,8 @@
       <% @list_of_production_plans.each do |a_production_plan| %>
       <tr>
         <td>
-          <form action="/production_plans/<%= a_production_plan.id %>" method="get"><button>Details</button></form>
-          <form action="/copy_production_plan/<%= a_production_plan.id %>" method="post"><button>Copy</button></form>
+          <form action="/production_plans/<%= a_production_plan.id %>" method="get"><button class="btn btn-outline-danger btn-sm">Details</button></form>
+          <form action="/copy_production_plan/<%= a_production_plan.id %>" method="post"><button class="btn btn-outline-danger btn-sm">Copy</button></form>
         </td>
 
         <td>
