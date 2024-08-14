@@ -48,19 +48,13 @@
       </div>
 
       <div>
-        <input type="hidden" id="plan_id_box" name="query_plan_id" value="<%= @the_material.plan_id %>">
-      </div>
-
-      <div>
         <label for="container_type_box">
           Container type
         </label>
 
         <select id="container_type_box" name="query_container_type">
           <option value="Pot">Pot</option>
-        </select>
-        <select id="container_type_box" name="query_container_type">
-          <option value="Tray">Pot</option>
+          <option value="Tray">Tray</option>
         </select>
       </div>
 
@@ -78,10 +72,6 @@
         </label>
 
         <input type="float" id="total_qty_box" name="query_total_qty" value="<%= @the_material.total_qty %>">
-      </div>
-
-      <div>
-        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @the_material.user_id %>">
       </div>
 
       <div>

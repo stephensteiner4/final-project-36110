@@ -140,10 +140,6 @@
         <div>
           <input type="hidden" id="plan_id_box" name="query_plan_id" value=<%= @the_production_plan.id %>>
         </div>
-
-        <div>
-          <input type="hidden" id="user_id_box" name="query_user_id" value=<%= current_user.id %>>
-        </div>
       </form>
     </div>
     </tr>
@@ -358,7 +354,6 @@
           </td>
         </div>
 
-        <input type="hidden" id="user_box" name="query_user_id" value="<%=current_user.id%>">
         <input type="hidden" id="plan_box" name="query_plan_id" value="<%=@the_production_plan.id%>">
 
       </form>

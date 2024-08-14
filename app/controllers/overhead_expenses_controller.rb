@@ -1,11 +1,4 @@
 class OverheadExpensesController < ApplicationController
-  def index
-    matching_overhead_expenses = OverheadExpense.all
-
-    @list_of_overhead_expenses = matching_overhead_expenses.order({ :created_at => :desc })
-
-    render({ :template => "overhead_expenses/index" })
-  end
 
   def show
     the_id = params.fetch("path_id")
@@ -22,7 +15,7 @@ class OverheadExpensesController < ApplicationController
     the_overhead_expense.category = params.fetch("query_category")
     the_overhead_expense.total_cost = params.fetch("query_total_cost")
     the_overhead_expense.plan_id = params.fetch("query_plan_id")
-    the_overhead_expense.user_id = params.fetch("query_user_id")
+    the_overhead_expense.user_id = current_user.id
 
     if the_overhead_expense.valid?
       the_overhead_expense.save
@@ -38,8 +31,8 @@ class OverheadExpensesController < ApplicationController
 
     the_overhead_expense.category = params.fetch("query_category")
     the_overhead_expense.total_cost = params.fetch("query_total_cost")
-    the_overhead_expense.plan_id = params.fetch("query_plan_id")
-    the_overhead_expense.user_id = params.fetch("query_user_id")
+    the_overhead_expense.plan_id = the_overhead_expense.plan_id
+    the_overhead_expense.user_id = current_user.id
 
     if the_overhead_expense.valid?
       the_overhead_expense.save
