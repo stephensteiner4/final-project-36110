@@ -26,7 +26,7 @@
 
 
 <div>
-  <div>
+  <div style="max-width: 300px;">
 
     <form action="/modify_material/<%= @the_material.id %>"  method="post" >
       <div>
@@ -34,9 +34,7 @@
           Description
         </label>
 
-        <textarea type="text" id="description_box" name="query_description" rows="2">
-          <%= @the_material.description %>
-        </textarea>
+        <textarea class="form-control border-dark"  type="text" id="description_box" name="query_description" rows="2"><%= @the_material.description %></textarea>
       </div>
 
       <div>
@@ -44,7 +42,7 @@
           Crop time
         </label>
 
-        <input type="integer" id="crop_time_box" name="query_crop_time" value="<%= @the_material.crop_time %>">
+        <input class="form-control border-dark" type="integer" id="crop_time_box" name="query_crop_time" value="<%= @the_material.crop_time %>">
       </div>
 
       <div>
@@ -52,7 +50,7 @@
           Container type
         </label>
 
-        <select id="container_type_box" name="query_container_type">
+        <select class="form-control border-dark"  id="container_type_box" name="query_container_type">
           <option value="Pot">Pot</option>
           <option value="Tray">Tray</option>
         </select>
@@ -63,7 +61,7 @@
           Container size
         </label>
 
-        <input type="text" id="container_size_box" name="query_container_size" value="<%= @the_material.container_size %>">
+        <input class="form-control border-dark" type="float" id="container_size_box" name="query_container_size" value="<%= @the_material.container_size %>">
       </div>
       
       <div>
@@ -71,7 +69,7 @@
           Total Quantity
         </label>
 
-        <input type="float" id="total_qty_box" name="query_total_qty" value="<%= @the_material.total_qty %>">
+        <input class="form-control border-dark" type="float" id="total_qty_box" name="query_total_qty" value="<%= @the_material.total_qty %>">
       </div>
 
       <div>
@@ -79,7 +77,7 @@
           Material cost
         </label>
 
-        <input type="float" id="material_cost_box" name="query_material_cost" value="<%= @the_material.material_cost %>">
+        <input class="form-control border-dark" type="float" id="material_cost_box" name="query_material_cost" value="<%= @the_material.material_cost %>">
       </div>
 
       <div>
@@ -87,7 +85,7 @@
           Unit container cost
         </label>
 
-        <input type="text" id="unit_container_cost_box" name="query_unit_container_cost" value="<%= @the_material.unit_container_cost %>">
+        <input class="form-control border-dark" type="float" id="unit_container_cost_box" name="query_unit_container_cost" value="<%= @the_material.unit_container_cost %>">
       </div>
 
       <div>
@@ -95,7 +93,7 @@
           Unit tag cost
         </label>
 
-        <input type="text" id="unit_tag_cost_box" name="query_unit_tag_cost" value="<%= @the_material.unit_tag_cost %>">
+        <input class="form-control border-dark" type="float" id="unit_tag_cost_box" name="query_unit_tag_cost" value="<%= @the_material.unit_tag_cost %>">
       </div>
 
       <div>
@@ -103,7 +101,7 @@
           Miscellaneous cost
         </label>
 
-        <input type="text" id="miscellaneous_cost_box" name="query_miscellaneous" value="<%= @the_material.miscellaneous %>">
+        <input class="form-control border-dark" type="float" id="miscellaneous_cost_box" name="query_miscellaneous" value="<%= @the_material.miscellaneous %>">
       </div>
 
       <div>
@@ -111,7 +109,7 @@
           Buffer %
         </label>
 
-        <input type="text" id="buffer_box" name="query_buffer" value="<%= @the_material.buffer %>">
+        <input class="form-control border-dark" type="float" id="buffer_box" name="query_buffer" value="<%= @the_material.buffer %>">
       </div>
       
       <div>
@@ -119,10 +117,10 @@
           Unit price
         </label>
 
-        <input type="text" id="unit_price_box" name="query_unit_price" value="<%= @the_material.unit_price %>">
+        <input class="form-control border-dark" type="float" id="unit_price_box" name="query_unit_price" value="<%= @the_material.unit_price %>">
       </div>
 
-      <button>
+      <button class="btn btn-outline-danger btn-sm">
         Update material
       </button>
     </form>

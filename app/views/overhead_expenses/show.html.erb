@@ -20,26 +20,28 @@
 
 <br>
 
-  <div>
+  <div style="max-width: 300px;">
     <form action="/modify_overhead_expense/<%= @the_overhead_expense.id %>"  method="post" >
       <div>
         <label for="category_box">
           Category
         </label>
 
-        <input type="text" id="category_box" name="query_category" value="<%= @the_overhead_expense.category %>">
+        <input class="form-control border-dark" type="text" id="category_box" name="query_category" value="<%= @the_overhead_expense.category %>">
       </div>
 
-      <div>
+      <div >
         <label for="total_cost_box">
           Total cost
         </label>
 
-        <input type="text" id="total_cost_box" name="query_total_cost" value="<%= @the_overhead_expense.total_cost %>">
+        <input class="form-control border-dark" type="text" id="total_cost_box" name="query_total_cost" value="<%= @the_overhead_expense.total_cost %>">
       </div>
 
-      <button>
-        Update overhead expense
+      <br>
+
+      <button class="btn btn-outline-danger btn-sm">
+        Update
       </button>
     </form>
   </div>
