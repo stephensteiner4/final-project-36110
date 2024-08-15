@@ -30,18 +30,28 @@
       }
 
       .space-qty-totals {
+        max-width: 700px;
+        margin: auto;
         display: flex;
         justify-content: space-around;
       }
 
       .cost-stats {
-        max-width: 1000px;
+        min-width: 800px;
+        margin: auto;
         display: flex;
         justify-content: space-around;
       }
 
+      .bsc-logo {
+        width:180px;
+        height:50px;
+        object-fit:cover;
+      }
+
       .profit-stats {
         max-width: 800px;
+        margin: auto;
         display: flex;
         justify-content: space-around;
       }
@@ -53,7 +63,9 @@
       <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark" style="padding-left:0px; padding-right:0px;">
       <% if current_user != nil %>
         <div class="container-fluid">
-          <a class="navbar-brand" href="/"><img class="bsc-logo" src="/images/BallSeed_White.png" alt="Ball Seed Logo"></a>
+          <a class="navbar-brand" href="/">
+            <img class="bsc-logo" src="/images/BallSeed_White.png" alt="Ball Seed Logo">
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

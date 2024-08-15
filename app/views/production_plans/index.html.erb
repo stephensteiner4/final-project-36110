@@ -3,12 +3,13 @@
     <h1>
       Manage Production Plans
     </h1>
+    <h3>Use the table below to create a new production plan or manage your existing plans.</h3>
   </div>
 </div>
 
 <div>
 
-  <h3>Use the table below to create a new production plan or manage your existing plans.</h3>
+  
 
   <br>
 
@@ -125,11 +126,11 @@
         </td>
 
         <td>
-          <%= a_production_plan.total_space %>
+          <%= a_production_plan.total_space.to_fs(:delimited) %>
         </td>
 
         <td>
-          <%= a_production_plan.soil_cost %>
+          $<%= a_production_plan.soil_cost %>
         </td>
 
         <td>

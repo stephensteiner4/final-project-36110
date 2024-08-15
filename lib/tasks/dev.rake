@@ -28,7 +28,7 @@ task({ :sample_data => :environment }) do
     plan = ProductionPlan.new
     plan.name = ["Spring 2025", "Fall 2024", "Spring 2026", "Fall 2026"].sample
 
-    plan.description = Faker::Movies::Lebowski.quote
+    plan.description = Faker::Lorem.paragraph
 
     plan.user_id = user_plan.id
 
@@ -85,7 +85,7 @@ task({ :sample_data => :environment }) do
 
       expense.category = exp
 
-      expense.total_cost = rand(10000..200000)
+      expense.total_cost = rand(100000..1000000)
 
       expense.plan_id = prodplan.id
 

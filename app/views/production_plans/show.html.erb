@@ -8,7 +8,7 @@
 </div>
 
 <div class="prod-plan-row">
-  <div style="max-width:300px;" class="production-edit">
+  <div style="max-width:400px;" class="production-edit">
     <h3>Edit Plan</h3>
     <form action="/modify_production_plan/<%= @the_production_plan.id %>"  method="post" >
       <div>
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="card" style="width: 13rem;">
+      <div class="card" style="width: 12rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Used Space:</h6>
           <% if @used_space >= 100 %>
@@ -82,7 +82,7 @@
     <h3>Costs</h3>
 
     <div class="cost-stats">
-      <div class="card" style="width: 12rem;">
+      <div class="card" style="width: 15rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Fixed Costs: </h6>
           <% total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum%>
@@ -90,7 +90,7 @@
         </div>
       </div>
 
-      <div class="card" style="width: 14rem;">
+      <div class="card" style="width: 15rem;">
         <div class="card-body">
           <% total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
           <% if total_overhead.infinite?() | total_overhead.nan?() %>
@@ -126,7 +126,7 @@
       <div class="card" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h5>
-          <h4 class="card-title">$<%= (total_varcosts - total_fixcosts).to_fs(:delimited) %></h4>
+          <h4 class="card-title">$<%=(total_rev - (total_varcosts + total_fixcosts)).to_fs(:delimited) %></h4>
         </div>
       </div>
     </div>  
@@ -429,11 +429,21 @@
           </td>
 
           <td>
-            $<%= (crop.unit_price - total_matl_cost).round(2).to_fs(:delimited) %>
+            <% unit_margin = (crop.unit_price - total_matl_cost).round(2) %>
+            <% if unit_margin <= 0 %>
+              <p style="color:red;">-$<%= (-1 * unit_margin).to_fs(:delimited) %></p>
+            <% else %>
+              <p>$<%= unit_margin.to_fs(:delimited) %></p>
+            <% end %>
           </td>
 
           <td>
-            $<%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2).to_fs(:delimited) %>
+            <% sqft_margin = (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2) %>
+            <% if sqft_margin <= 0 %>
+              <p style="color:red;">-$<%= (-1 * sqft_margin).to_fs(:delimited) %></p>
+            <% else %>
+              <p >$<%= sqft_margin.to_fs(:delimited) %></p>
+            <% end %>
           </td>
         </tr>
       <% end %>
