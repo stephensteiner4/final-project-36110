@@ -19,7 +19,7 @@ class OverheadExpensesController < ApplicationController
     the_overhead_expense = OverheadExpense.new
     the_overhead_expense.plan_id = params.fetch("query_plan_id")
 
-    check_prodplan = ProductionPlan.where({:id => the_overhead_expense.plan_id})
+    check_prodplan = ProductionPlan.where({:id => the_overhead_expense.plan_id}).at(0)
 
     if check_prodplan.user_id == current_user.id
       the_overhead_expense.category = params.fetch("query_category")

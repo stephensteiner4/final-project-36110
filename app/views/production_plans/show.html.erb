@@ -93,9 +93,9 @@
       <div class="card" style="width: 15rem;">
         <div class="card-body">
           <% total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
-          <% if total_overhead.infinite?() | total_overhead.nan?() %>
+          <% if (total_overhead.infinite?()) || (total_overhead.nan?()) %>
             <h6 class="card-subtitle mb-2 text-body-secondary" >Fixed Costs / ft&sup2; / week (incl. Used Space Adj.): </h6> 
-            <h5 class="card-title">0</h5>
+            <h5 class="card-title">$0</h5>
           <% else %>
             <h6 class="card-subtitle mb-2 text-body-secondary" >Fixed Costs / ft&sup2; / week (incl. Used Space Adj.): </h6>
             <h5 class="card-title">$<%= total_overhead.to_fs(:delimited)  %></h5>
