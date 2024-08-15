@@ -1,16 +1,16 @@
 <div>
   <div>
     <h1>
-      Production plan: <%= @the_production_plan.name %>
+      Production Plan: <%= @the_production_plan.name %>
     </h1>
 
   </div>
 </div>
 
 
-<div>
-  <div style="max-width:300px;">
-
+<div class="prod-plan-row">
+  <div style="max-width:300px;" class="production-edit">
+    <h3>Edit Plan</h3>
     <form action="/modify_production_plan/<%= @the_production_plan.id %>"  method="post" >
       <div>
         <label for="description_box">
@@ -49,46 +49,81 @@
       </button>
     </form>
   </div>
-</div>
-
-<hr>
-
-<div>
-  <div>
-    Total ft&sup2;-weeks: <%= @the_production_plan.total_space * @the_production_plan.prod_weeks %>
-  </div>
-
-  <div>
-    Used Space: <%= @used_space %>%
-  </div>
-
-  <div>
-    Total Fixed Costs: <%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %>
-  </div>
-
-  <div>
-    <% total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
-    <% if total_overhead.infinite?() | total_overhead.nan?() %>
-      Fixed Costs per ft&sup2; per week (incl. Overhead Adjustment): 0
-    <% else %>
-      Fixed Costs per ft&sup2; per week (incl. Overhead Adjustment): <%= total_overhead  %>
-    <% end %>
-  </div>
-
-  <div>
-    Total Variable Costs (incl. Shrink Opportunity Cost): <%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %> 
-  </div>
-
-  <div>
-    Total Revenue: <%= total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %>
-  </div>
   
-  <div>
-    Total Qty: <%= @the_production_plan.crops.pluck(:total_qty).sum%> 
-  </div>
+  <div class="production-stats" >
+    <h3>Production Overview</h3>
+    <div class="space-qty-totals">
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total ft&sup2;-weeks:</h6>
+          <h5 class="card-title"><%= @the_production_plan.total_space * @the_production_plan.prod_weeks %></h5>
+        </div>
+      </div>
 
-  <div>
-    Total Profit: <%= total_rev = (total_varcosts - total_fixcosts) %>
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Used Space:</h6>
+          <h5 class="card-title"><%= @used_space %>%</h5>
+        </div>
+      </div>
+      
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total Qty: </h6>
+          <h5 class="card-title"><%= @the_production_plan.crops.pluck(:total_qty).sum%></h5>
+        </div>
+      </div>
+
+    </div>
+
+    <h3>Costs</h3>
+
+    <div class="cost-stats">
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total Fixed Costs: </h6>
+          <h5 class="card-title"><%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %> </h5>
+        </div>
+      </div>
+
+      <div class="card" style="width: 14rem;">
+        <div class="card-body">
+          <% total_overhead = (@fixed_per_sqftweek / (@used_space/100)).round(2) %>
+          <% if total_overhead.infinite?() | total_overhead.nan?() %>
+            <h6 class="card-subtitle mb-2 text-body-secondary" >Fixed Costs / ft&sup2; / week (incl. Used Space Adj.): </h6> 
+            <h5 class="card-title">0</h5>
+          <% else %>
+            <h6 class="card-subtitle mb-2 text-body-secondary" >Fixed Costs / ft&sup2; / week (incl. Used Space Adj.): </h6>
+            <h5 class="card-title"><%= total_overhead  %></h5>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card" style="width: 15rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total Variable Costs (incl. Shrink Opportunity Cost):</h6> 
+          <h5 class="card-title"><%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %></h5>
+        </div>
+      </div>
+    </div>
+
+    <h3>Profitability</h3>
+
+    <div class="profit-stats">
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total Revenue: </h6>
+          <h5 class="card-title"><%= total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %></h5>
+        </div>
+      </div>
+
+      <div class="card" style="width: 12rem;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h6>
+          <h5 class="card-title"><%= total_rev = (total_varcosts - total_fixcosts) %></h5>
+        </div>
+      </div>
+    </div>  
   </div>
 </div>
 
@@ -100,7 +135,7 @@
   </h2>
 
   <div>
-    <p>List your fixed production costs and any overhead costs you will incur during this production period.</p>
+    <p>List your fixed production costs and any overhead costs you expect to incur during this production period.</p>
   </div>
 
   <div  style="padding-right:700px">
