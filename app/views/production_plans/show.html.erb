@@ -239,7 +239,7 @@
         </th>
 
         <th>
-          Bench Area Used
+          Bench Area Used (ft&sup2;)
         </th>
 
         <th>
@@ -421,7 +421,7 @@
 
           <td>
             <% total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous + total_overhead).round(2) %>
-            <%= total_matl_cost.to_fs(:delimited) %>
+            $<%= total_matl_cost.to_fs(:delimited) %>
           </td>
           
           <td>
