@@ -21,7 +21,7 @@ class MaterialsController < ApplicationController
     the_material.user_id = current_user.id
     the_material.plan_id = params.fetch("query_plan_id").to_i
 
-    check_prodplan = ProductionPlan.where({:id => the_material.plan_id})
+    check_prodplan = ProductionPlan.where({:id => the_material.plan_id}).at(0)
 
     if check_prodplan.user_id == current_user.id
       the_material.description = params.fetch("query_description")

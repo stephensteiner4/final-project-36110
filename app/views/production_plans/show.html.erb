@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 <div class="prod-plan-row">
   <div style="max-width:300px;" class="production-edit">
     <h3>Edit Plan</h3>
@@ -56,21 +55,25 @@
       <div class="card" style="width: 12rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total ft&sup2;-weeks:</h6>
-          <h5 class="card-title"><%= @the_production_plan.total_space * @the_production_plan.prod_weeks %></h5>
+          <h5 class="card-title"><%= (@the_production_plan.total_space * @the_production_plan.prod_weeks).to_fs(:delimited) %></h5>
         </div>
       </div>
 
-      <div class="card" style="width: 12rem;">
+      <div class="card" style="width: 13rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Used Space:</h6>
-          <h5 class="card-title"><%= @used_space %>%</h5>
+          <% if @used_space >= 100 %>
+            <h5 class="card-title" style="color: red;"><%= @used_space.to_fs(:delimited) %>%<br>Exceeds Available Space</h5>
+          <% else %>
+            <h5 class="card-title"><%= @used_space.to_fs(:delimited) %>%</h5>
+          <% end %>
         </div>
       </div>
       
       <div class="card" style="width: 12rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Qty: </h6>
-          <h5 class="card-title"><%= @the_production_plan.crops.pluck(:total_qty).sum%></h5>
+          <h5 class="card-title"><%= @the_production_plan.crops.pluck(:total_qty).sum.to_i.to_fs(:delimited) %></h5>
         </div>
       </div>
 
@@ -82,7 +85,8 @@
       <div class="card" style="width: 12rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Fixed Costs: </h6>
-          <h5 class="card-title"><%= total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum %> </h5>
+          <% total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum%>
+          <h5 class="card-title">$<%= total_fixcosts.to_fs(:delimited) %> </h5>
         </div>
       </div>
 
@@ -94,7 +98,7 @@
             <h5 class="card-title">0</h5>
           <% else %>
             <h6 class="card-subtitle mb-2 text-body-secondary" >Fixed Costs / ft&sup2; / week (incl. Used Space Adj.): </h6>
-            <h5 class="card-title"><%= total_overhead  %></h5>
+            <h5 class="card-title">$<%= total_overhead.to_fs(:delimited)  %></h5>
           <% end %>
         </div>
       </div>
@@ -102,7 +106,8 @@
       <div class="card" style="width: 15rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Variable Costs (incl. Shrink Opportunity Cost):</h6> 
-          <h5 class="card-title"><%= total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %></h5>
+          <% total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %>
+          <h5 class="card-title">$<%= total_varcosts.to_fs(:delimited) %></h5>
         </div>
       </div>
     </div>
@@ -110,17 +115,18 @@
     <h3>Profitability</h3>
 
     <div class="profit-stats">
-      <div class="card" style="width: 12rem;">
+      <div class="card" style="width: 14rem;">
         <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-body-secondary">Total Revenue: </h6>
-          <h5 class="card-title"><%= total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %></h5>
+          <h5 class="card-subtitle mb-2 text-body-secondary">Total Revenue: </h5>
+          <% total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %>
+          <h4 class="card-title">$<%= total_rev.to_fs(:delimited) %></h4>
         </div>
       </div>
 
-      <div class="card" style="width: 12rem;">
+      <div class="card" style="width: 14rem;">
         <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h6>
-          <h5 class="card-title"><%= total_rev = (total_varcosts - total_fixcosts) %></h5>
+          <h5 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h5>
+          <h4 class="card-title">$<%= (total_varcosts - total_fixcosts).to_fs(:delimited) %></h4>
         </div>
       </div>
     </div>  
@@ -184,7 +190,7 @@
           </td>
         
           <td>
-            <%= cost.total_cost %>
+            $<%= cost.total_cost.to_fs(:delimited) %>
           </td>
         </tr>
 
@@ -382,27 +388,27 @@
           </td>
           
           <td>
-            <%= crop.total_qty %>
+            <%= crop.total_qty.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.bench_space %>
+            <%= crop.bench_space.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.material_cost %>
+            $<%= crop.material_cost.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.unit_container_cost %>
+            $<%= crop.unit_container_cost.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.unit_tag_cost %>
+            $<%= crop.unit_tag_cost.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.miscellaneous %>
+            $<%= crop.miscellaneous.to_fs(:delimited) %>
           </td>
           
           <td>
@@ -410,23 +416,24 @@
           </td>
           
           <td>
-            <%= crop.shrink_opportunity_cost %>
+            $<%= crop.shrink_opportunity_cost.to_fs(:delimited) %>
           </td>
 
           <td>
-            <%= total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous + total_overhead).round(2) %>
+            <% total_matl_cost = (crop.material_cost + crop.unit_container_cost + crop.unit_tag_cost + crop.soil_cost + crop.miscellaneous + total_overhead).round(2) %>
+            <%= total_matl_cost.to_fs(:delimited) %>
           </td>
           
           <td>
-            <%= crop.unit_price %>
+            $<%= crop.unit_price.to_fs(:delimited) %>
           </td>
 
           <td>
-            <%= (crop.unit_price - total_matl_cost).round(2) %>
+            $<%= (crop.unit_price - total_matl_cost).round(2).to_fs(:delimited) %>
           </td>
 
           <td>
-            <%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2) %>
+            $<%= (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2).to_fs(:delimited) %>
           </td>
         </tr>
       <% end %>
