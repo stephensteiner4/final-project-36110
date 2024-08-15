@@ -55,7 +55,7 @@
       <div class="card" style="width: 12rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total ft&sup2;-weeks:</h6>
-          <h5 class="card-title"><%= (@the_production_plan.total_space * @the_production_plan.prod_weeks).to_fs(:delimited) %></h5>
+          <h5 class="card-title"><%= (@the_production_plan.total_space * @the_production_plan.prod_weeks).round(2).to_fs(:delimited) %></h5>
         </div>
       </div>
 
@@ -86,7 +86,7 @@
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Fixed Costs: </h6>
           <% total_fixcosts = @the_production_plan.fixed_costs.pluck(:total_cost).sum%>
-          <h5 class="card-title">$<%= total_fixcosts.to_fs(:delimited) %> </h5>
+          <h5 class="card-title">$<%= total_fixcosts.round(2).to_fs(:delimited) %> </h5>
         </div>
       </div>
 
@@ -106,7 +106,7 @@
       <div class="card" style="width: 15rem;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-body-secondary">Total Variable Costs (incl. Shrink Opportunity Cost):</h6> 
-          <% total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum %>
+          <% total_varcosts = @the_production_plan.crops.pluck(:total_cost).sum.round(2) %>
           <h5 class="card-title">$<%= total_varcosts.to_fs(:delimited) %></h5>
         </div>
       </div>
@@ -118,7 +118,7 @@
       <div class="card" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-subtitle mb-2 text-body-secondary">Total Revenue: </h5>
-          <% total_rev = @the_production_plan.crops.pluck(:total_revenue).sum %>
+          <% total_rev = @the_production_plan.crops.pluck(:total_revenue).sum.round(2) %>
           <h4 class="card-title">$<%= total_rev.to_fs(:delimited) %></h4>
         </div>
       </div>
@@ -126,7 +126,7 @@
       <div class="card" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h5>
-          <h4 class="card-title">$<%=(total_rev - (total_varcosts + total_fixcosts)).to_fs(:delimited) %></h4>
+          <h4 class="card-title">$<%=(total_rev - (total_varcosts + total_fixcosts)).round(2).to_fs(:delimited) %></h4>
         </div>
       </div>
     </div>  
