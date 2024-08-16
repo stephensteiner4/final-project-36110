@@ -40,14 +40,19 @@ class MaterialsController < ApplicationController
       the_material.unit_price = params.fetch("query_unit_price")
 
       diam = the_material.container_size
+
+      if (the_material.bench_space.nil?()) || (the_material.crop_time.nil?())  || (the_material.total_qty.nil?())
+        redirect_to("/production_plans/#{the_material.plan_id}", { :alert => the_material.errors.full_messages.to_sentence }); return
+      else
+        the_material.total_bench_space_weeks = the_material.bench_space * the_material.crop_time
       
-      if the_material.container_type == "Pot"
-        the_material.bench_space = ((diam**2/144.0) * the_material.total_qty).round(2)
-      elsif the_material.container_type == "Tray"
-        the_material.bench_space = (((11*22)/144.0) * (the_material.total_qty / diam)).round(2)
+        if the_material.container_type == "Pot"
+          the_material.bench_space = ((diam**2/144.0) * the_material.total_qty).round(2)
+        elsif the_material.container_type == "Tray"
+          the_material.bench_space = (((11*22)/144.0) * (the_material.total_qty / diam)).round(2)
+        end
       end
 
-      the_material.total_bench_space_weeks = the_material.bench_space * the_material.crop_time
       prodplan = ProductionPlan.where({:id=>params.fetch("query_plan_id").to_i}).at(0)
 
       if the_material.container_type == "Pot"
@@ -58,12 +63,20 @@ class MaterialsController < ApplicationController
         matl.soil_cost = ((cell_volume / 46656) * prodplan.soil_cost).round(2)
       end
       
-      the_material.shrink_opportunity_cost = ((the_material.buffer/100.0) * the_material.unit_price).round(2)
+      if (the_material.buffer.nil?()) || (the_material.unit_price.nil?())
+        redirect_to("/production_plans/#{the_material.plan_id}", { :alert => the_material.errors.full_messages.to_sentence }); return
+      else
+        the_material.shrink_opportunity_cost = ((the_material.buffer/100.0) * the_material.unit_price).round(2)
+      end
 
-      the_material.unit_cost = the_material.shrink_opportunity_cost + the_material.unit_container_cost + the_material.unit_tag_cost + the_material.material_cost + the_material.soil_cost
+      if (the_material.unit_container_cost.nil?()) || (the_material.unit_tag_cost.nil?()) || (the_material.material_cost.nil?())
+        redirect_to("/production_plans/#{the_material.plan_id}", { :alert => the_material.errors.full_messages.to_sentence }); return
+      else
+        the_material.unit_cost = the_material.shrink_opportunity_cost + the_material.unit_container_cost + the_material.unit_tag_cost + the_material.material_cost + the_material.soil_cost
 
-      the_material.total_cost = the_material.unit_cost * the_material.total_qty
-      the_material.total_revenue = the_material.unit_price * the_material.total_qty
+        the_material.total_cost = the_material.unit_cost * the_material.total_qty
+        the_material.total_revenue = the_material.unit_price * the_material.total_qty
+      end
 
       if the_material.valid?
         the_material.save

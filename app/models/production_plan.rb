@@ -17,4 +17,11 @@ class ProductionPlan < ApplicationRecord
   has_many :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
   belongs_to :grower, required: true, class_name: "User", foreign_key: "user_id"
   has_many  :crops, class_name: "Material", foreign_key: "plan_id", dependent: :destroy
+
+  ### Validation
+  validates :description, :name, :prod_weeks, :soil_cost, :total_space, :user_id, presence: true
+  
+  validates :prod_weeks, :soil_cost, :total_space, numericality: true
+
+  validates :prod_weeks, :user_id, numericality: { only_integer: true }
 end

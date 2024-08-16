@@ -15,4 +15,11 @@ class OverheadExpense < ApplicationRecord
   # has_many  :fixed_costs, class_name: "OverheadExpense", foreign_key: "plan_id", dependent: :destroy
   belongs_to :plan, class_name: "ProductionPlan", foreign_key: "plan_id"
   belongs_to :user, class_name: "User", foreign_key: "user_id"
+
+  ### Validation
+  validates :category, :total_cost, :plan_id, :user_id, presence: true
+  
+  validates :total_cost, numericality: true
+
+  validates :plan_id, :user_id, numericality: { only_integer: true }
 end

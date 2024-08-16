@@ -30,7 +30,7 @@ class OverheadExpensesController < ApplicationController
         the_overhead_expense.save
         redirect_to("/production_plans/#{the_overhead_expense.plan_id}", { :notice => "Overhead expense created successfully." })
       else
-        redirect_to("/production_plans", { :alert => the_overhead_expense.errors.full_messages.to_sentence })
+        redirect_to("/production_plans/#{the_overhead_expense.plan_id}", { :alert => the_overhead_expense.errors.full_messages.to_sentence })
       end
     else
       redirect_to("/production_plans", {:notice => "You don't have access to that page."})
