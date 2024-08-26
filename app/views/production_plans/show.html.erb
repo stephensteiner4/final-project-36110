@@ -126,7 +126,12 @@
       <div class="card" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-subtitle mb-2 text-body-secondary">Total Profit: </h5>
-          <h4 class="card-title">$<%=(total_rev - (total_varcosts + total_fixcosts)).round(2).to_fs(:delimited) %></h4>
+          <% total_plan_profit = (total_rev - (total_varcosts + total_fixcosts)).round(2) %>
+          <% if total_plan_profit < 0 %>
+            <h4 class="card-title" style="color:red;">-$<%=(-1 * total_plan_profit).to_fs(:delimited) %></h4>
+          <% else %>
+            <h4 class="card-title" style="color:black;">$<%= total_plan_profit.to_fs(:delimited) %></h4>
+          <% end %>
         </div>
       </div>
     </div>  
@@ -430,7 +435,7 @@
 
           <td>
             <% unit_margin = (crop.unit_price - total_matl_cost).round(2) %>
-            <% if unit_margin <= 0 %>
+            <% if unit_margin < 0 %>
               <p style="color:red;">-$<%= (-1 * unit_margin).to_fs(:delimited) %></p>
             <% else %>
               <p>$<%= unit_margin.to_fs(:delimited) %></p>
@@ -439,7 +444,7 @@
 
           <td>
             <% sqft_margin = (((crop.unit_price - total_matl_cost)*crop.total_qty) / crop.bench_space  / crop.crop_time).round(2) %>
-            <% if sqft_margin <= 0 %>
+            <% if sqft_margin < 0 %>
               <p style="color:red;">-$<%= (-1 * sqft_margin).to_fs(:delimited) %></p>
             <% else %>
               <p >$<%= sqft_margin.to_fs(:delimited) %></p>
